@@ -23,15 +23,31 @@
         width: 300px; /* ロゴの幅を300pxに設定 */
         height: auto; /* 高さを自動調整 */
     }
-    .auth-buttons {
+    /* .auth-buttons {
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-        .auth-buttons a {
-            margin: 10px 0; /* ボタン間の余白を設定 */
-            width: 200px;
+        } */
+
+        .below {
+            margin: 40px 0; /* ボタン間の余白を設定 */
+            width: 400px;
             text-align: center;
+            font-size: 25px;
+        }
+
+        .below2 {
+            margin: 40px 0;
+            width: 400px;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .below3 {
+            margin: 60px 0;
+            width: 400px;
+            text-align: center;
+            font-size: 20px;
         }
 </style>
 
