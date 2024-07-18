@@ -14,7 +14,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100vh;
+        height: 140vh;
     }
     .logo {
         margin-bottom: 50px;
