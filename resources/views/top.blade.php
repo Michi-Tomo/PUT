@@ -61,7 +61,7 @@
         <div class="below2">
             <a href="{{ route('login') }}" class="button">運転手</a>
         <div class="below3">
-            <a href="{{ route('register') }}" class="button">会員ではないですか？ 新規登録する</a>
+            会員ではないですか？<a href="{{ route('register') }}" class="button">新規登録する</a>
         </div>
     </div>
 </body>
