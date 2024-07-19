@@ -78,6 +78,7 @@
                             </div>
                         </div>
 
+
                         <div style="display: flex; justify-content: space-between;">
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
@@ -85,6 +86,7 @@
                                         {{ __('ユーザーの新規登録') }}
                                     </button>
                                 </div>
+
                             </div>
                          </div>
                     </form>

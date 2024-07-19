@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PickController;
 
 use App\Http\Controllers\PickController;
 use App\Http\Controllers\RatingController;
@@ -23,9 +24,13 @@ Route::get('/', function () {
 
 
 
+Route::get('/driver', [App\Http\Controllers\PickController::class, 'register'])->name('driver');
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 
 Route::get('/picks/search', [PickController::class, 'search'])->name('picks.search');
@@ -35,4 +40,5 @@ Route::get('/picks/result', [PickController::class, 'result'])->name('picks.resu
 
 Route::get('/rate', [RatingController::class, 'show'])->name('rate.show');
 Route::post('/rate', [RatingController::class, 'store'])->name('rate.store');
+
 

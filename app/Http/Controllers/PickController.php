@@ -7,6 +7,16 @@ use Illuminate\Http\Request;
 
 class PickController extends Controller
 {
+
+    public function register()
+    {
+        return view('driver');
+    }
+    
+
+
+
+
     public function search()
     {
         return view('picks.search');
@@ -40,5 +50,7 @@ class PickController extends Controller
             'totalFare' => 0  // Placeholder value
         ]);
     }
+
 }
+
 
