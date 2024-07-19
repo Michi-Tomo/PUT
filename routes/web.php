@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PickController;
 
-use App\Http\Controllers\PickController;
 use App\Http\Controllers\RatingController;
 
 
@@ -21,6 +20,15 @@ use App\Http\Controllers\RatingController;
 Route::get('/', function () {
     return view('top');
 });
+
+Route::get('/resister', function () {
+    return view('resister');
+});
+
+Route::get('/driver', function () {
+    return view('driver');
+});
+
 
 
 
