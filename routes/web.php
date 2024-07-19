@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PickController;
+use App\Http\Controllers\RatingController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +32,7 @@ Route::get('/picks/search', [PickController::class, 'search'])->name('picks.sear
 Route::post('/picks/search/submit', [PickController::class, 'store'])->name('picks.search.submit'); // store action for form submission
 Route::post('/picks/search', [PickController::class, 'store'])->name('picks.store');
 Route::get('/picks/result', [PickController::class, 'result'])->name('picks.result');
+
+Route::get('/rate', [RatingController::class, 'show'])->name('rate.show');
+Route::post('/rate', [RatingController::class, 'store'])->name('rate.store');
 
