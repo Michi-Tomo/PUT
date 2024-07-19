@@ -93,9 +93,12 @@
 
                     <div class="row mb-0">
                         <div class="col-md-6 offset-md-4" >
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('ドライバーの新規登録') }}
-                            </button>
+                            <form action="/driver" method="get">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">
+                                    {{  __('ドライバーの新規登録') }}
+                                </button>
+                            </form>
                         </div>
                     </div>
 
