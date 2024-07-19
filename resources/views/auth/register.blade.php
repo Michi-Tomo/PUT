@@ -83,6 +83,10 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                                <form action="/driver" method="get">
+                                    @csrf
+                                    <button type="submit">Go to Driver Page</button>
+                                </form>
                             </div>
                         </div>
                     </form>
