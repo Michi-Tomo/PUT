@@ -82,19 +82,21 @@
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('新規登録') }}
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4" >
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('ドライバーの新規登録') }}
+                                        {{ __('ユーザーの新規登録') }}
                                     </button>
                                 </div>
                             </div>
                          </div>
                     </form>
+
+                    <div class="row mb-0">
+                        <div class="col-md-6 offset-md-4" >
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('ドライバーの新規登録') }}
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
