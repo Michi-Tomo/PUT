@@ -78,18 +78,27 @@
                             </div>
                         </div>
 
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                                <form action="/driver" method="get">
-                                    @csrf
-                                    <button type="submit">Go to Driver Page</button>
-                                </form>
+
+                        <div style="display: flex; justify-content: space-between;">
+                            <div class="row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('ユーザーの新規登録') }}
+                                    </button>
+                                </div>
+
                             </div>
-                        </div>
+                         </div>
                     </form>
+
+                    <div class="row mb-0">
+                        <div class="col-md-6 offset-md-4" >
+                            <button type="submit" class="btn btn-primary">
+                                {{ __('ドライバーの新規登録') }}
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
