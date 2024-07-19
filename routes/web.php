@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\PickController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,3 +24,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/picks/search', [PickController::class, 'search'])->name('picks.search');
+Route::post('/picks/search/submit', [PickController::class, 'store'])->name('picks.search.submit'); // store action for form submission
+Route::post('/picks/search', [PickController::class, 'store'])->name('picks.store');
+Route::get('/picks/result', [PickController::class, 'result'])->name('picks.result');
