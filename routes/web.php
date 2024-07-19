@@ -19,7 +19,9 @@ Route::get('/', function () {
 });
 
 
+
 Route::get('/driver', [App\Http\Controllers\PickController::class, 'register'])->name('driver');
+
 
 Auth::routes();
 
