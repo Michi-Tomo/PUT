@@ -21,13 +21,15 @@
     </style>
 </head>
 <body>
-    <h1>Ride Request Result</h1>
+    <h1></h1>
     <div id="map"></div>
 
-    <p><strong>Pickup Location:</strong> {{ $pickup }}</p>
-    <p><strong>Destination:</strong> {{ $destination }}</p>
-    <p><strong>Estimated Duration:</strong> <span id="duration">{{ $duration }}</span></p>
-    <p><strong>Estimated Fare:</strong> ¥<span id="fare">{{ $totalFare }}</span></p>
+    <p><strong>乗車地:</strong> {{ $pickup }}</p>
+    <p><strong>目的地:</strong> {{ $destination }}</p>
+    <p><strong>推定時間:</strong> <span id="duration">{{ $duration }}</span></p>
+    <p><strong>価格:</strong> ¥<span id="fare">{{ $totalFare }}</span></p>
+
+    <button type="submit">予約</button>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
