@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('age');
             $table->string('driver_license');
             $table->string('license_plate');
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
