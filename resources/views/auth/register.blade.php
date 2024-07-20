@@ -3,10 +3,11 @@
 @section('content')
 
 
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="bike-illustration"></div>
+            <div class="road"></div>
             <div class="card">
                 <div class="card-header">{{ __('新規登録') }}</div>
 
@@ -163,7 +164,7 @@
                                 </div>
 
                             </div>
-                         </div>
+                        </div>
                     </form>
 
                     {{-- <div class="row mb-0">
