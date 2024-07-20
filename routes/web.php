@@ -21,23 +21,23 @@ Route::get('/', function () {
     return view('top');
 });
 
-Route::get('/resister', function () {
-    return view('resister');
-});
+// Route::get('/resister', function () {
+//     return view('resister');
+// });
 
-Route::get('/driver', function () {
-    return view('driver');
-});
-
-
+// Route::get('/driver', function () {
+//     return view('driver');
+// });
 
 
-Route::get('/driver', [App\Http\Controllers\PickController::class, 'register'])->name('driver');
+
+
+// Route::get('/driver', [App\Http\Controllers\PickController::class, 'register'])->name('driver');
 
 Route::get('/driver/register', [App\Http\Controllers\DriverController::class, 'showRegistrationForm'])->name('driver.register');
 Route::post('/driver/register', [App\Http\Controllers\DriverController::class, 'register'])->name('driver.register.submit');
 
-
+// Route::get('/')
 
 Auth::routes();
 
