@@ -95,7 +95,7 @@
                         {{-- ドライバー専用の追加項目 --}}
                         <div id="driver_infos" style="display: none">
                             <div class="row mb-3">
-                                <input id="driver_image" type="file" name="image" class="col-md-4 col-form-label text-md-end">{{ __('登録用の顔写真') }}
+                                <input id="driver_image" type="file" name="driver_image" class="col-md-4 col-form-label text-md-end">{{ __('登録用の顔写真') }}
 
                             <div class="col-md-6">
                                 {{-- <input id="driver_image" type="text" class="form-control @error('driver_image') is-invalid @enderror" name="driver_image" value="{{ old('driver_image') }}" required autocomplete="driver_image" autofocus> --}}
@@ -113,7 +113,7 @@
                             <label for="age" class="col-md-4 col-form-label text-md-end">{{ __('年齢') }}</label>
 
                             <div class="col-md-6">
-                                <input id="age" type="text" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" required autocomplete="age" autofocus>
+                                <input id="age" type="text" class="form-control @error('age') is-invalid @enderror" name="age" value="{{ old('age') }}" autocomplete="age" autofocus>
 
                                 @error('age')
                                     <span class="invalid-feedback" role="alert">
@@ -127,7 +127,7 @@
                             <label for="driver_license" class="col-md-4 col-form-label text-md-end">{{ __('運転免許証') }}</label>
 
                             <div class="col-md-6">
-                                <input id="driver_license" type="text" class="form-control @error('driver_license') is-invalid @enderror" name="driver_license" value="{{ old('driver_license') }}" required autocomplete="driver_license" autofocus>
+                                <input id="driver_license" type="text" class="form-control @error('driver_license') is-invalid @enderror" name="driver_license" value="{{ old('driver_license') }}" autocomplete="driver_license" autofocus>
 
                                 @error('driver_license')
                                     <span class="invalid-feedback" role="alert">
@@ -141,7 +141,7 @@
                             <label for="license_plate" class="col-md-4 col-form-label text-md-end">{{ __('車両番号') }}</label>
 
                             <div class="col-md-6">
-                                <input id="license_plate" type="text" class="form-control @error('license_plate') is-invalid @enderror" name="license_plate" value="{{ old('license_plate') }}" required autocomplete="license_plate" autofocus>
+                                <input id="license_plate" type="text" class="form-control @error('license_plate') is-invalid @enderror" name="license_plate" value="{{ old('license_plate') }}" autocomplete="license_plate" autofocus>
 
                                 @error('license_plate')
                                     <span class="invalid-feedback" role="alert">
@@ -158,7 +158,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('ユーザーの新規登録') }}
+                                        {{ __('新規登録') }}
                                     </button>
                                 </div>
 
