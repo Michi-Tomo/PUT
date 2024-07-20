@@ -34,6 +34,10 @@ Route::get('/driver', function () {
 
 Route::get('/driver', [App\Http\Controllers\PickController::class, 'register'])->name('driver');
 
+Route::get('/driver/register', [App\Http\Controllers\DriverController::class, 'showRegistrationForm'])->name('driver.register');
+Route::post('/driver/register', [App\Http\Controllers\DriverController::class, 'register'])->name('driver.register.submit');
+
+
 
 Auth::routes();
 

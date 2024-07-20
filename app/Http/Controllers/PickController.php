@@ -14,7 +14,10 @@ class PickController extends Controller
     }
     
 
-
+    public function driver()
+    {
+        return view('login');
+    }
 
 
     public function search()
