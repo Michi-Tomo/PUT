@@ -56,9 +56,9 @@ Route::post('/rate', [RatingController::class, 'store'])->name('rate.store');
 
 //BookingController
 //表示
-Route::get('/booking/accept', [BookingController::class, 'index_accept'])->name('booking.accept');
-Route::get('/booking/decision', [BookingController::class, 'index_decision'])->name('booking.decision');
-Route::get('/booking/refuse', [BookingController::class, 'index_refuse'])->name('booking.refuse');
+Route::get('/bookings/accept', [BookingController::class, 'showAccept'])->name('booking.accept');
+Route::get('/bookings/decision', [BookingController::class, 'showDecision'])->name('booking.decision');
+Route::get('/bookings/refuse', [BookingController::class, 'showRefuse'])->name('booking.refuse');
 
 
 
