@@ -13,10 +13,17 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->string('user_id');
+            $table->string('driver_id');
+            $table->string('pickup_id');
+            $table->string('dropoff_location');
+            $table->dateTime('pickup_time');
+            $table->dateTime('dropoff_time');
             $table->timestamps();
         });
     }
 
+    
     /**
      * Reverse the migrations.
      */

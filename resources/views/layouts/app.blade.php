@@ -15,6 +15,30 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+
+    @stack('css')
+
+    
+    <style>
+        .bike-illustration {
+            width: 200px; /* 画像の幅を大きくする */
+            height: 170px; /* 画像の高さを大きくする */
+            background: url('/images/pickup4.png') no-repeat center center;
+            background-size: contain;
+            margin: 20px auto; /* 中央に配置 */
+        }
+
+        .road {
+            width: 110%;
+            height: 3px;
+            background-color: black;
+            box-shadow: 0 4px 2px -2px gray;
+            margin-top: -33px;
+            margin-bottom: 65px;
+        }
+    </style>
+
 </head>
 <body>
     <div id="app">
@@ -76,5 +100,7 @@
             @yield('content')
         </main>
     </div>
+
+    @stack('js')
 </body>
 </html>

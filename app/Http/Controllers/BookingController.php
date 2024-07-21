@@ -10,9 +10,17 @@ class BookingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function showAccept()
     {
-        //
+            return view('bookings.accept');
+    }
+    public function showDecision()
+    {
+            return view('bookings.decision');
+    }
+    public function showRefuse()
+    {
+            return view('bookings.refuse');
     }
 
     /**
