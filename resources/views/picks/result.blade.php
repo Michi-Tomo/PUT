@@ -40,15 +40,38 @@
 </head>
 <body> --}}
 @section('content')
-    <h1></h1>
+    <h1>予約</h1>
     <div id="map"></div>
 
-    <p><strong>乗車地:</strong> {{ $pickup }}</p>
-    <p><strong>目的地:</strong> {{ $destination }}</p>
-    <p><strong>推定時間:</strong> <span id="duration">{{ $duration }}</span></p>
-    <p><strong>価格:</strong> ¥<span id="fare">{{ $totalFare }}</span></p>
+    <form action="{{ route('bookings.store') }}" method="POST">
+        @csrf
+        <div>
+            <label for="">乗車地:</label>
+            <input type="text" name="pickup_location" value="{{ $pickup }}">
+        </div>
 
-    <button type="submit">予約</button>
+        <div>
+            <label for="">目的地:</label>
+            <input type="text" name="dropoff_location" value="{{ $destination }}">
+        </div>
+
+        <div>
+            <label for="">推定時間:</label>
+            <input type="text" name="taketime" value="{{ $duration }}" id="duration">
+        </div>
+
+        <div>
+            <label for="">価格:</label>
+            <input type="text" name="fare" value="{{ $totalFare }}" id="fare">
+        </div>
+        
+        {{-- <p><strong>乗車地:</strong> {{ $pickup }}</p> --}}
+        {{-- <p><strong>目的地:</strong> {{ $destination }}</p> --}}
+        {{-- <p><strong>推定時間:</strong> <span id="duration">{{ $duration }}</span></p>
+        <p><strong>価格:</strong> ¥<span id="fare">{{ $totalFare }}</span></p> --}}
+
+        <button type="submit">予約</button>
+    </form>
 
     @push('js')
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -114,8 +137,8 @@
                                 var formattedFare = totalFare.toFixed(2);
 
                                 // Update the duration and fare in the HTML
-                                document.getElementById('duration').textContent = duration.toFixed(2) + ' minutes';
-                                document.getElementById('fare').textContent = formattedFare;
+                                document.getElementById('duration').value = duration.toFixed(2) + ' minutes';
+                                document.getElementById('fare').value = formattedFare;
                             });
                         });
                 })

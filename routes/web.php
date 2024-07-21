@@ -51,6 +51,8 @@ Route::post('/picks/search/submit', [PickController::class, 'store'])->name('pic
 Route::post('/picks/search', [PickController::class, 'store'])->name('picks.store');
 Route::get('/picks/result', [PickController::class, 'result'])->name('picks.result');
 
+
+
 Route::get('/rate', [RatingController::class, 'show'])->name('rate.show');
 Route::post('/rate', [RatingController::class, 'store'])->name('rate.store');
 
@@ -60,5 +62,6 @@ Route::get('/bookings/accept', [BookingController::class, 'showAccept'])->name('
 Route::get('/bookings/decision', [BookingController::class, 'showDecision'])->name('booking.decision');
 Route::get('/bookings/refuse', [BookingController::class, 'showRefuse'])->name('booking.refuse');
 
-
+//APIからデータの取得
+Route::post('/picks/result/store', [BookingController::class, 'store'])->name('bookings.store');
 
