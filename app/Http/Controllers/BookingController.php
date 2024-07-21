@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\Driverinfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -13,7 +14,19 @@ class BookingController extends Controller
      */
     public function showAccept()
     {
-            return view('bookings.accept');
+        $user = Auth::user();
+
+        $user_type = Auth::user()->is_driver;
+        
+
+        if($user_type == 0) {
+            //ユーザーページに飛ぶ
+            return view('picks.search');
+        } else if($user_type == 1) {
+            //ドライバーぺージに飛ぶ！
+            $users = Driverinfo::where('user_id', $user->id)->first();
+            return view('bookings.accept', compact('users'));
+        }
     }
     public function showDecision()
     {
@@ -21,7 +34,19 @@ class BookingController extends Controller
     }
     public function showRefuse()
     {
-            return view('bookings.refuse');
+        $user = Auth::user();
+
+        $user_type = Auth::user()->is_driver;
+        
+
+        if($user_type == 0) {
+            //ユーザーページに飛ぶ
+            return view('picks.search');
+        } else if($user_type == 1) {
+            //ドライバーぺージに飛ぶ！
+            $users = Driverinfo::where('user_id', $user->id)->first();
+            return view('bookings.accept', compact('users'));
+        }
     }
 
     /**

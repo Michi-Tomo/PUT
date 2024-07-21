@@ -52,6 +52,14 @@
             margin-top: 20px;
             width: calc(100% - 20px); /* Adjust the width to fit the form */
         }
+        .driver-info1 {
+            display: flex;
+            margin-top: 30px;
+            margin-left: 10px;
+        }
+        .driver-info2 {
+            margin-left: 50px;
+        }
     </style>
 </head>
 <body>
@@ -59,7 +67,33 @@
 
     <div id="map"></div>
 
-    <form action="{{ route('picks.store') }}" method="POST">
+    <form action="">
+        @csrf
+
+        <div class="driver-info1">
+            <div class="driver-image">
+                <img src="{{ asset('storage/' . $users->driver_image) }}" alt="Driver Photo" style="width: 90px; height: 90px; border-radius: 50%; margin-top: 10px">
+            </div>
+
+        <div class="driver-info2">
+            <div class="license-plate">
+                <p>登録済み車両番号 <br>{{ $users->license_plate ?? 'Not available' }}</p>
+            </div>
+
+            <div class="rating">
+                <p>あなたの平均評価 <br></p>
+            </div>
+        </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
+            キャンセル
+        </button>
+        
+    </form>
+
+    {{-- <form action="{{ route('picks.store') }}" method="POST">
         @csrf
         <div class="mb-3" style="width: 100%;">
             <label for="pickup">
@@ -85,7 +119,7 @@
             <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
             選択
         </button>
-    </form>
+    </form> --}}
     
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
