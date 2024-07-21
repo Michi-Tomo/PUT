@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Driverinfo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -92,4 +93,19 @@ class BookingController extends Controller
     {
         //
     }
+
+    public function showAcceptPage($driverId)
+{
+    // ドライバーの情報をデータベースから取得
+    $driver = Driverinfo::find($driverId);
+
+    // 顔写真のパスを取得（例えば、'photo_path'というカラムに保存されていると仮定）
+    $driver_image = $driver->driver_image;
+
+    // 他の必要なデータも含めてビューに渡す
+    return view('accept', ['driver' => $driver, 'driver_image' => $driver_image]);
+
+}
+
+
 }

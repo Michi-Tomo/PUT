@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PickController;
 
 use App\Http\Controllers\RatingController;
-
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,4 +64,11 @@ Route::get('/bookings/refuse', [BookingController::class, 'showRefuse'])->name('
 
 //APIからデータの取得
 Route::post('/picks/result/store', [BookingController::class, 'store'])->name('bookings.store');
+Route::get('/mypage', [ProfileController::class, 'index'])->name('profile.index');
+
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/home');
+})->name('logout');
 

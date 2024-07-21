@@ -18,13 +18,13 @@
             height: 400px;
             margin: 0 -20px 20px -20px; /* Remove margin on left and right */
         }
-        form {
+        /* form {
             display: flex;
             flex-direction: column;
             align-items: center;
             max-width: 400px;
             margin: auto;
-        }
+        } */
         .input-group {
             display: flex;
             align-items: center;
@@ -52,14 +52,68 @@
             margin-top: 20px;
             width: calc(100% - 20px); /* Adjust the width to fit the form */
         }
+        .driver-info1 {
+            display: flex;
+            margin-top: 30px;
+            margin-left: 10px;
+        }
+        .driver-info2 {
+            margin-left: 50px;
+        }
     </style>
 </head>
 <body>
     <h1></h1>
 
     <div id="map"></div>
+   
+   
+        <form action="">
+            @csrf
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
+                Pick Up
+            </button>
 
-    <form action="{{ route('picks.store') }}" method="POST">
+            <div class="driver-info1">
+                <div class="driver-image">
+                    <img src="{{ asset('storage/' . $users->driver_image) }}" alt="Driver Photo" style="width: 90px; height: 90px; border-radius: 50%; margin-top: 10px">
+                </div>
+
+            <div class="driver-info2">
+                <div class="license-plate">
+                    <p>登録済み車両番号 <br>{{ $users->license_plate ?? 'Not available' }}</p>
+                </div>
+
+                <div class="rating">
+                    <p>あなたの平均評価 <br></p>
+                </div>
+            </div>
+            </div>
+        </form>
+  
+
+    {{-- @foreach ($users as  $user)
+    
+   
+
+
+    <form action="">
+            @csrf
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
+            Pick Up
+        </button>
+            <!-- ドライバーの顔写真を表示 -->
+            <img src="{{ asset('storage/' .  $user->driver_image )}}" alt="Driver Photo" style="width: 100px; height: 100px;">
+
+            <!-- 他のドライバー情報も表示する -->
+            Driver Plate: <p> {{  $user->license_plate ?? null }}</p>
+    </form>
+    @endforeach --}}
+
+
+    {{-- <form action="{{ route('picks.store') }}" method="POST">
         @csrf
         <div class="mb-3" style="width: 100%;">
             <label for="pickup">
@@ -85,7 +139,7 @@
             <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
             選択
         </button>
-    </form>
+    </form> --}}
     
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
