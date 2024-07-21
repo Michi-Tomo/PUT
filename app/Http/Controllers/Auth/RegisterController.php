@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'phone' => ['required', 'regex:/^\+[1-9]\d{1,14}$/'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'user_type' => ['required', 'string'],
-            'driver_image' => ['nullable'],
+            'driver_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'age' => ['nullable'],
             'driver_license' => ['nullable'],
             'license_plate' => ['nullable'],
@@ -80,8 +80,15 @@ class RegisterController extends Controller
         ]);
 
         if ($data['user_type'] == 1){
+
+            $driverImage = null;
+            
+
+            if (request()->hasFile('driver_image')) {
+                $driverImage = request()->file('driver_image')->store('images', 'public');
+            }
             Driverinfo::create([
-                'driver_image' => $data['driver_image'],
+                'driver_image' => $driverImage,
                 'age' => $data['age'],
                 'driver_license' => $data['driver_license'],
                 'license_plate' => $data['license_plate'],
