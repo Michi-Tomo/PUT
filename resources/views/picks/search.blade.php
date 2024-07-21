@@ -1,56 +1,4 @@
-@extends('layouts.app')
-
-@push('css')
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-        margin: 0;
-        box-sizing: border-box;
-    }
-    #map {
-        width: calc(100% + 40px); /* Add 20px to each side */
-        height: 400px;
-        margin: 0 -20px 20px -20px; /* Remove margin on left and right */
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        max-width: 400px;
-        margin: auto;
-    }
-    .input-group {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 10px;
-        width: 100%;
-    }
-    .input-group .arrow-icon {
-        font-size: 48px; /* Make the arrow longer */
-        color: #000000;
-    }
-    .form-control {
-        margin-bottom: 10px;
-        padding: 10px;
-        font-size: 16px;
-        width: calc(100% - 20px); /* Adjust the width to fit the form */
-        background-color: #e6e6fa; /* Light purple background */
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-    button {
-        cursor: pointer;
-        padding: 10px;
-        font-size: 16px;
-        margin-top: 20px;
-        width: calc(100% - 20px); /* Adjust the width to fit the form */
-    }
-</style>
-@endpush
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
@@ -70,7 +18,7 @@
             width: 100%;
             height: 400px;
             margin: 0;
-            margin-bottom: 50px;
+            margin-bottom: 20px; /* Add margin bottom to create space */
         }
         form {
             display: flex;
@@ -129,12 +77,7 @@
         }
     </style>
 </head>
-
-<body> --}}
-@section('content')
-    <h1></h1>
-
-
+<body>
     <div id="map"></div>
 
     <form action="{{ route('picks.store') }}" method="POST">
@@ -167,8 +110,6 @@
             選択
         </button>
     </form>
-
-    @push('js')
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
@@ -209,8 +150,5 @@
 
         updateMapWithCurrentLocation();
     </script>
-    @endpush
-   
-{{-- </body>
-</html> --}}
-@endsection
+</body>
+</html>
