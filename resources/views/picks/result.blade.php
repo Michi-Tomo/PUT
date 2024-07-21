@@ -1,4 +1,22 @@
-<!DOCTYPE html>
+@extends('layouts.app')
+@push('css')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        #map {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+    </style>
+@endpush
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,7 +38,8 @@
         }
     </style>
 </head>
-<body>
+<body> --}}
+@section('content')
     <h1></h1>
     <div id="map"></div>
 
@@ -31,6 +50,7 @@
 
     <button type="submit">予約</button>
 
+    @push('js')
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script>
@@ -110,8 +130,11 @@
         var destination = "{{ $destination }}";
         plotRoute(pickup, destination);
     </script>
-</body>
-</html>
+    @endpush
+    
+@endsection
+{{-- </body>
+</html> --}}
 
 
 

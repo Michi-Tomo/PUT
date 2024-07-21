@@ -15,6 +15,10 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+
+    @stack('css')
+
     
     <style>
         .bike-illustration {
@@ -34,6 +38,7 @@
             margin-bottom: 65px;
         }
     </style>
+
 </head>
 <body>
     <div id="app">
@@ -95,5 +100,7 @@
             @yield('content')
         </main>
     </div>
+
+    @stack('js')
 </body>
 </html>

@@ -27,10 +27,11 @@ class HomeController extends Controller
         $user_type = Auth::user()->is_driver;
 
         if($user_type == 0) {
+            //ユーザーページに飛ぶ
             return view('picks.search');
         } else if($user_type == 1) {
             //ドライバーぺージに飛ぶ！
-            return view('home');
+            return view('bookings.accept');
         }
     }
 }
