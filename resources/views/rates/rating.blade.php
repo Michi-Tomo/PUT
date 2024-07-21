@@ -126,6 +126,7 @@
         <div class="menu-item"><a href="/history">履歴</a></div>
         <div class="menu-item"><a href="/messages">メッセージ</a></div>
     </div>
+    
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PickController;
 
 use App\Http\Controllers\RatingController;
-
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,5 +60,11 @@ Route::get('/bookings/accept', [BookingController::class, 'showAccept'])->name('
 Route::get('/bookings/decision', [BookingController::class, 'showDecision'])->name('booking.decision');
 Route::get('/bookings/refuse', [BookingController::class, 'showRefuse'])->name('booking.refuse');
 
+Route::get('/mypage', [ProfileController::class, 'index'])->name('profile.index');
 
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/home');
+})->name('logout');
 
