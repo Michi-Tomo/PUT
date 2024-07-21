@@ -49,7 +49,7 @@ class BookingController extends Controller
         } else if($user_type == 1) {
             //ドライバーぺージに飛ぶ！
             $users = Driverinfo::where('user_id', $user->id)->first();
-            return view('bookings.accept', compact('users'));
+            return view('bookings.refuse', compact('users'));
         }
     }
 
