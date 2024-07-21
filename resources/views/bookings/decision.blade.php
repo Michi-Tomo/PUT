@@ -53,8 +53,8 @@
     <p><strong>価格:</strong> ¥<span id="fare">{{ $booking->fare }}</span></p>
 
     <div class="response-buttons">
-        <a href="{{ route('booking.accept') }}" class="yes">はい</a>
-        <a href="{{ route('booking.refuse') }}" class="no">いいえ</a>
+        <a href="{{ route('booking.refuse') }}" class="yes">はい</a>
+        <a href="{{ route('booking.accept') }}" class="no">いいえ</a>
     </div>
 
     @push('js')
