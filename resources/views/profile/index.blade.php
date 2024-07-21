@@ -76,7 +76,7 @@
     <div class="menu-bar">
         <div class="menu-item"><a href="/home">ホーム</a></div>
         <div class="menu-item"><a href="/history">履歴</a></div>
-        <div class="menu-item"><a href="/message">メッセージ</a></div>
+        <div class="menu-item"><a href="/messages">メッセージ</a></div>
         <div class="menu-item"><a href="/mypage">マイページ</a></div>
     </div>
 </body>
