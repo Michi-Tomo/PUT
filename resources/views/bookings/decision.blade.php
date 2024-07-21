@@ -14,9 +14,9 @@
             box-sizing: border-box;
         }
         #map {
-            width: calc(100% + 40px); /* Add 20px to each side */
+            width: calc(100% + 40px);
             height: 400px;
-            margin: 0 -20px 20px -20px; /* Remove margin on left and right */
+            margin: 0 -20px 20px -20px;
         }
         form {
             display: flex;
@@ -33,29 +33,47 @@
             width: 100%;
         }
         .input-group .arrow-icon {
-            font-size: 48px; /* Make the arrow longer */
+            font-size: 48px;
             color: #000000;
         }
         .form-control {
             margin-bottom: 10px;
             padding: 10px;
             font-size: 16px;
-            width: calc(100% - 20px); /* Adjust the width to fit the form */
-            background-color: #e6e6fa; /* Light purple background */
+            width: calc(100% - 20px);
+            background-color: #e6e6fa;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        button {
+        button, .response-buttons a {
             cursor: pointer;
             padding: 10px;
             font-size: 16px;
             margin-top: 20px;
-            width: calc(100% - 20px); /* Adjust the width to fit the form */
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            width: calc(100% - 20px);
+            color: white;
+            border-radius: 4px;
+        }
+        .response-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+        .response-buttons a {
+            width: 30%;
+        }
+        .response-buttons .yes {
+            background-color: #28a745; /* Green */
+        }
+        .response-buttons .no {
+            background-color: #dc3545; /* Red */
         }
     </style>
 </head>
 <body>
-    <h1></h1>
+    <h1>受け入れる？？？</h1>
 
     <div id="map"></div>
 
@@ -63,31 +81,28 @@
         @csrf
         <div class="mb-3" style="width: 100%;">
             <label for="pickup">
-                <i class="bi bi-geo-alt-fill bi-2x"></i> <!-- Larger icon -->
+                <i class="bi bi-geo-alt-fill bi-2x"></i>
             </label>
             <input type="text" id="pickup" name="pickup" class="form-control" placeholder="乗車地を入力" required>
         </div>
         
         <div class="input-group">
             <span class="arrow-icon">
-                <i class="bi bi-arrow-down bi-3x"></i> <!-- Larger icon -->
+                <i class="bi bi-arrow-down bi-3x"></i>
             </span>
         </div>
         
         <div class="mb-3" style="width: 100%;">
             <label for="destination">
-                <i class="bi bi-geo-fill bi-2x"></i> <!-- Larger icon -->
+                <i class="bi bi-geo-fill bi-2x"></i>
             </label>
             <input type="text" id="destination" name="destination" class="form-control" placeholder="目的地を入力" required>
         </div>
-        
-        <button type="submit" class="btn btn-primary">
-            <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
-            選択
-        </button>
     </form>
-    
-
+    <div class="response-buttons">
+        <a href="{{ route('booking.accept') }}" class="yes">はい</a>
+        <a href="{{ route('booking.refuse') }}" class="no">いいえ</a>
+    </div>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         var map = L.map('map');
@@ -116,9 +131,9 @@
                     console.error('Error getting location:', error);
                     alert('Unable to retrieve your location. Error code: ' + error.code);
                 }, {
-                    enableHighAccuracy: true, // Request high accuracy
-                    timeout: 5000, // Set timeout to 5 seconds
-                    maximumAge: 0 // Do not use cached location
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
                 });
             } else {
                 alert('Geolocation is not supported by this browser.');
