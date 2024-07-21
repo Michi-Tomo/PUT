@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('user_id');
             $table->string('driver_id');
-            $table->string('pickup_id');
+            $table->string('pickup_location');
             $table->string('dropoff_location');
-            $table->dateTime('pickup_time');
-            $table->dateTime('dropoff_time');
+            $table->string('taketime');
+            $table->string('fare');
+            $table->boolean('is_accepted')->nullable();
             $table->timestamps();
         });
     }
