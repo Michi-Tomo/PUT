@@ -7,6 +7,7 @@ use App\Http\Controllers\PickController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\MatchingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,3 +80,8 @@ Route::post('/logout', function () {
     return redirect('/home');
 })->name('logout');
 
+//matching 
+// Route::get('/match', function() {
+//     return view('match');
+// });
+Route::get('/match', [MatchingsController::class, 'match'])->name('matchings.match');
