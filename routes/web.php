@@ -7,7 +7,7 @@ use App\Http\Controllers\PickController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DriverController;
-
+use App\Http\Controllers\DriverProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,9 +70,15 @@ Route::get('/bookings/refuse', [BookingController::class, 'showRefuse'])->name('
 
 //APIからデータの取得
 Route::post('/picks/result/store', [BookingController::class, 'store'])->name('bookings.store');
+
 Route::get('/mypage', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+Route::get('/drivermypage', [DriverProfileController::class, 'index'])->name('driverprofile.index');
+Route::get('/driverprofile/edit', [DriverProfileController::class, 'edit'])->name('driverprofile.edit');
+Route::post('/driverprofile/update', [DriverProfileController::class, 'update'])->name('profile.update');
+
 
 Route::post('/logout', function () {
     Auth::logout();
