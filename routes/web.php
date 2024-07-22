@@ -6,6 +6,7 @@ use App\Http\Controllers\PickController;
 
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DriverController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,11 @@ Route::get('/', function () {
 
 Route::get('/driver/register', [App\Http\Controllers\DriverController::class, 'showRegistrationForm'])->name('driver.register');
 Route::post('/driver/register', [App\Http\Controllers\DriverController::class, 'register'])->name('driver.register.submit');
+
+// 評価の平均取得
+Route::get('/drivers/{id}', [DriverController::class, 'show'])->name('driver.rate');
+
+
 
 // Route::get('/')
 

@@ -9,6 +9,22 @@ class Rating extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['rating'];
+    protected $fillable = ['rating', 'user_id', 'is_driver' ];
+
+//ドライバーの評価取得
+    public function driver()
+    {
+        return $this->belongsTo(Driverinfo::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
+
+
+
+
+
 
