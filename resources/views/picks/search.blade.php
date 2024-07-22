@@ -75,6 +75,37 @@
             width: 100%; /* Adjust the width to fit the form */
             box-sizing: border-box;
         }
+
+        .menu-bar {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+}
+
+.menu-item {
+    text-align: center;
+    flex: 1;
+}
+
+.menu-item a {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-item a i {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
     </style>
 </head>
 <body>
@@ -150,5 +181,33 @@
 
         updateMapWithCurrentLocation();
     </script>
+
+<div class="menu-bar">
+    <div class="menu-item">
+        <a href="/home">
+            <i class="bi bi-house-door-fill"></i>
+            <span>ホーム</span>
+        </a>
+    </div>
+    <div class="menu-item">
+        <a href="/history">
+            <i class="bi bi-clock-history"></i>
+            <span>履歴</span>
+        </a>
+    </div>
+    <div class="menu-item">
+        <a href="/messages">
+            <i class="bi bi-chat-dots-fill"></i>
+            <span>メッセージ</span>
+        </a>
+    </div>
+    <div class="menu-item">
+        <a href="/mypage">
+            <i class="bi bi-person-fill"></i>
+            <span>マイページ</span>
+        </a>
+    </div>
+</div>
+
 </body>
 </html>
