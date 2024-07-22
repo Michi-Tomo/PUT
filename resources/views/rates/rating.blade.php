@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rating</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -93,11 +94,20 @@
 
         .menu-item {
             text-align: center;
+            flex: 1;
         }
 
         .menu-item a {
             color: white;
             text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-item a i {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -121,10 +131,30 @@
     </div>
 
     <div class="menu-bar">
-        <div class="menu-item"><a href="/home">ホーム</a></div>
-        <div class="menu-item"><a href="/history">履歴</a></div>
-        <div class="menu-item"><a href="/messages">メッセージ</a></div>
-        <div class="menu-item"><a href="/mypage">マイページ</a></div>
+        <div class="menu-item">
+            <a href="/home">
+                <i class="bi bi-house-door-fill"></i>
+                <span>ホーム</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="/history">
+                <i class="bi bi-clock-history"></i>
+                <span>履歴</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="/messages">
+                <i class="bi bi-chat-dots-fill"></i>
+                <span>メッセージ</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="/mypage">
+                <i class="bi bi-person-fill"></i>
+                <span>マイページ</span>
+            </a>
+        </div>
     </div>
     
 
