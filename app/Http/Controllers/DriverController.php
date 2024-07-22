@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Driverinfo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DriverController extends Controller
 {
@@ -35,7 +37,20 @@ class DriverController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $driver = Driverinfo::findOrFail($id);
+        $averageRating = $driver->averageRating();
+
+        return view('drivers.show', compact('driver', 'averageRating'));
+
+        try {
+            $driver = Driverinfo::findOrFail($id);
+            $averageRating = $driver->averageRating();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            // ドライバーが見つからなかった場合の処理
+            return redirect()->route('home')->with('error', 'Driver not found.');
+        }
+
+        return view('drivers.show', compact('driver', 'averageRating'));
     }
 
     /**

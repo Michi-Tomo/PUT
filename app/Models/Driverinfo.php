@@ -18,6 +18,19 @@ class Driverinfo extends Model
         'license_plate',
         'user_id',
     ];
+
+
+    //ドライバーの評価を取得
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
+
+    public function averageRating()
+    {
+        return $this->ratings()->avg('rating');
+    }
 }
+
 
 

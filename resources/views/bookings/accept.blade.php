@@ -86,7 +86,7 @@
                 </div>
 
                 <div class="rating">
-                    <p>あなたの平均評価 <br></p>
+                    <p>あなたの平均評価 <br>{{ $averageRating ?? 'No ratings yet' }}</p>
                 </div>
             </div>
             </div>
@@ -183,3 +183,10 @@
     </script>
 </body>
 </html>
+
+<!-- resources/views/layouts/app.blade.php (or wherever you include your layout) -->
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
