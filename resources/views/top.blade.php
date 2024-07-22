@@ -29,15 +29,15 @@
             align-items: center;
         } */
 
-        .below {
+        /* .below {
             margin: 40px 0; /* ボタン間の余白を設定 */
-            width: 400px;
+            /* width: 400px;
             text-align: center;
             font-size: 25px;
-        }
+        } */ 
 
         .below2 {
-            margin: 40px 0;
+            margin: 100px 0;
             width: 400px;
             text-align: center;
             font-size: 25px;
@@ -56,10 +56,11 @@
         <div class="above">
             <img class="loginimg" src="{{ asset('images/pickup2.png') }}" alt="">
         </div>
-        <div class="below">
+        {{-- <div class="below">
             <a href="{{ route('login') }}" class="button">乗客</a>
+        </div> --}}
         <div class="below2">
-            <a href="{{ route('login') }}" class="button">運転手</a>
+            <a href="{{ route('login') }}" class="button">ログイン</a>
         <div class="below3">
             会員ではないですか？<a href="{{ route('register') }}" class="button">新規登録する</a>
         </div>
