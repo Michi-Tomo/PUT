@@ -65,7 +65,8 @@ Route::get('/bookings/refuse', [BookingController::class, 'showRefuse'])->name('
 //APIからデータの取得
 Route::post('/picks/result/store', [BookingController::class, 'store'])->name('bookings.store');
 Route::get('/mypage', [ProfileController::class, 'index'])->name('profile.index');
-
+Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
 Route::post('/logout', function () {
     Auth::logout();

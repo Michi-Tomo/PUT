@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>マイページ</title>
+    <title>プロフィール編集</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
     <style>
         body {
@@ -27,28 +27,12 @@
             justify-content: center;
         }
 
-        .profile-details {
+        .profile-edit {
             background: #fff;
             padding: 20px;
             margin: 20px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .edit-button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 10px;
-        }
-
-        .edit-button:hover {
-            background-color: #0056b3;
         }
 
         .menu-bar {
@@ -80,23 +64,41 @@
             font-size: 1.5rem;
             margin-bottom: 5px;
         }
+
+        form input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="profile-details">
-            <h1>マイページ</h1>
-            <p>ようこそ、{{ Auth::user()->name }}さん</p>
-            <p>メールアドレス: {{ Auth::user()->email }}</p>
-            <p>電話番号: {{ Auth::user()->phone }}</p> <!-- 追加された電話番号表示 -->
-            
-            <!-- 編集ボタン -->
-            <a href="{{ route('profile.edit') }}" class="edit-button">編集</a>
-
-            <!-- ログアウトフォーム -->
-            <form action="{{ route('logout') }}" method="POST">
+        <div class="profile-edit">
+            <h1>プロフィール編集</h1>
+            <form action="{{ route('profile.update') }}" method="POST">
                 @csrf
-                <button type="submit">ログアウト</button>
+                <input type="text" name="name" value="{{ old('name', $user->name) }}" placeholder="名前" required>
+                <input type="email" name="email" value="{{ old('email', $user->email) }}" placeholder="メールアドレス" required>
+                <input type="text" name="phone" value="{{ old('phone', $user->phone) }}" placeholder="電話番号">
+                <input type="password" name="password" placeholder="パスワード（変更する場合のみ）">
+                <input type="password" name="password_confirmation" placeholder="パスワード確認">
+                <button type="submit">更新</button>
             </form>
         </div>
     </div>
