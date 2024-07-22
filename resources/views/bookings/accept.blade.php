@@ -238,7 +238,7 @@
             </a>
         </div>
         <div class="menu-item">
-            <a href="/mypage">
+            <a href="/drivermypage">
                 <i class="bi bi-person-fill"></i>
                 <span>マイページ</span>
             </a>

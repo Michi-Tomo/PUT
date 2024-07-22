@@ -30,6 +30,11 @@ class Driverinfo extends Model
     {
         return $this->ratings()->avg('rating');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
 
 
