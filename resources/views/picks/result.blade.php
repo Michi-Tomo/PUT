@@ -42,6 +42,15 @@
             width: 100%; /* Adjust the width to fit the form */
             box-sizing: border-box;
         }
+        .back-button {
+            position: fixed;
+            bottom: 30px; /* Adjusted for higher position */
+            left: 30px; /* Adjusted for more right position */
+            font-size: 30px;
+            color: #000;
+            cursor: pointer;
+            font-weight: bold; /* To ensure the < mark is bold */
+        }
     </style>
 </head>
 <body>
@@ -59,7 +68,11 @@
             <p><i class="bi bi-clock"></i> <strong>推定時間:</strong> <span id="duration">{{ $duration }}</span></p>
             <p><i class="bi bi-currency-yen"></i> <strong>推定料金:</strong> ¥<span id="fare">{{ $totalFare }}</span></p>
         </div>
-        <button type="button" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> 決定</button>
+        <button type="button" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> 予約</button>
+    </div>
+
+    <div class="back-button" onclick="goBack()">
+        &lt;
     </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -126,6 +139,10 @@
         var pickup = "{{ $pickup }}";
         var destination = "{{ $destination }}";
         plotRoute(pickup, destination);
+
+        function goBack() {
+            window.location.href = "{{ route('picks.search') }}";
+        }
     </script>
 </body>
 </html>

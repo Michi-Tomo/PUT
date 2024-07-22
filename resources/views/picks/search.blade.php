@@ -107,7 +107,7 @@
         
         <button type="submit" class="btn btn-primary">
             <i class="bi bi-check-circle-fill"></i>
-            選択
+            検索
         </button>
     </form>
 
