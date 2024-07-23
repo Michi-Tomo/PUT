@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -15,7 +15,7 @@
             align-items: center;
             justify-content: space-between;
             height: 100vh;
-            background-color: #f0f0f0;
+            background-color: #e9ecef;
         }
 
         .container {
@@ -25,35 +25,48 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            padding: 20px;
         }
 
         .profile-details {
-            background: #fff;
-            padding: 20px;
+            background: #ffffff;
+            padding: 30px;
             margin: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .edit-button {
+        .profile-details h1 {
+            margin-bottom: 20px;
+            color: #343a40;
+        }
+
+        .profile-details p {
+            margin: 10px 0;
+            color: #495057;
+            font-size: 1rem;
+        }
+
+        .edit-button, .logout-button {
             background-color: #007bff;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 25px;
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            margin-top: 10px;
+            margin: 10px 5px;
+            transition: background-color 0.3s;
         }
 
-        .edit-button:hover {
+        .edit-button:hover, .logout-button:hover {
             background-color: #0056b3;
         }
 
         .menu-bar {
             width: 100%;
-            background-color: #333;
+            background-color: #343a40;
             color: white;
             display: flex;
             justify-content: space-around;
@@ -80,6 +93,10 @@
             font-size: 1.5rem;
             margin-bottom: 5px;
         }
+
+        .menu-item a span {
+            font-size: 0.875rem;
+        }
     </style>
 </head>
 <body>
@@ -88,15 +105,12 @@
             <h1>マイページ</h1>
             <p>ようこそ、{{ Auth::user()->name }}さん</p>
             <p>メールアドレス: {{ Auth::user()->email }}</p>
-            <p>電話番号: {{ Auth::user()->phone }}</p> <!-- 追加された電話番号表示 -->
+            <p>電話番号: {{ Auth::user()->phone }}</p>
             
-            <!-- 編集ボタン -->
             <a href="{{ route('profile.edit') }}" class="edit-button">編集</a>
-
-            <!-- ログアウトフォーム -->
-            <form action="{{ route('logout') }}" method="POST">
+            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
-                <button type="submit">ログアウト</button>
+                <button type="submit" class="logout-button">ログアウト</button>
             </form>
         </div>
     </div>
