@@ -117,9 +117,9 @@
             <p>電話番号: {{ Auth::user()->phone }}</p>
             <p>免許証番号：{{ $driverInfo->driver_license }}</p>
             <p>車両番号：{{ $driverInfo->license_plate }}</p>
-            <p>平均評価：{{ $averageRating ?? 'まだ評価が行われていません' }}</p>
+            <p>平均評価：{{ $averageRating ?? '評価が行われていません' }}</p>
             
-            <a href="{{ route('profile.edit') }}" class="edit-button">編集</a>
+            <a href="{{ route('driverprofile.edit') }}" class="edit-button">編集</a>
             <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
                 <button type="submit" class="logout-button">ログアウト</button>
