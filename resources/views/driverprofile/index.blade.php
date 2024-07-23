@@ -85,14 +85,17 @@
 <body>
     <div class="container">
         <div class="profile-details">
-            <h1>ドライバーマイページ</h1>
+            <h1>マイページ</h1>
+            <p><img src="{{ asset('storage/' . $driverInfo->driver_image ) }}" alt="Driver Photo" style="width: 90px; height: 90px; border-radius: 50%; margin-top: 10px">
+            </p>
             <p>{{ Auth::user()->name }}さん</p>
+            <p>年齢：{{ $driverInfo->age }}</p>
             <p>メールアドレス: {{ Auth::user()->email }}</p>
             <p>電話番号: {{ Auth::user()->phone }}</p> <!-- 追加された電話番号表示 -->
-            <p>登録済み車両番号 <br>{{ $driverInfo->license_plate ?? 'Not available' }}</p>
-            <p>あなたの平均評価 <br>{{ $averageRating ?? 'No ratings yet' }}</p>
-            <p>写真<img src="{{ asset('storage/' . $driverInfo->driver_image ) }}" alt="Driver Photo" style="width: 90px; height: 90px; border-radius: 50%; margin-top: 10px">
-            </p>
+            <p>免許証番号：{{ $driverInfo->driver_license}}</p>
+            <p>車両番号：{{ $driverInfo->license_plate }}</p>
+            <p>平均評価：{{ $averageRating ?? 'No ratings yet' }}</p>
+            
             
             <!-- 編集ボタン -->
             <a href="{{ route('profile.edit') }}" class="edit-button">編集</a>
