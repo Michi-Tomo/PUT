@@ -120,7 +120,7 @@
                 </div>
 
                 <div class="rating">
-                    <p>あなたの平均評価 <br>{{ $averageRating ?? 'No ratings yet' }}</p>
+                    <p>あなたの平均評価 <br>{{ $averageRating ?? '評価が行われていません' }}</p>
                 </div>
             </div>
             </div>
