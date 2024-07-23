@@ -123,9 +123,9 @@
                                 var additionalDistance = Math.max(0, distance - 0.5);
 
                                 var totalFare = baseFare + (additionalDistance * additionalFarePerKm);
-                                var formattedFare = totalFare.toFixed(2);
+                                var formattedFare = Math.ceil(totalFare);
 
-                                document.getElementById('duration').textContent = duration.toFixed(2) + ' 分';
+                                document.getElementById('duration').textContent = Math.ceil(duration) + ' 分';
                                 document.getElementById('fare').textContent = formattedFare;
                             });
                         });
@@ -146,7 +146,6 @@
     </script>
 </body>
 </html>
-
 
 
 
