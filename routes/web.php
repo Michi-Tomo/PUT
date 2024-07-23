@@ -61,6 +61,8 @@ Route::get('/picks/search', [PickController::class, 'search'])->name('picks.sear
 Route::post('/picks/search/submit', [PickController::class, 'store'])->name('picks.search.submit'); // store action for form submission
 Route::post('/picks/search', [PickController::class, 'store'])->name('picks.store');
 Route::get('/picks/result', [PickController::class, 'result'])->name('picks.result');
+Route::get('/picks/refuse', [PickController::class, 'showRefuse'])->name('picks.refuse');
+
 
 
 
@@ -82,6 +84,8 @@ Route::post('/profile/update', [ProfileController::class, 'update'])->name('prof
 
 Route::get('/driverprofile', [DriverProfileController::class, 'index'])->name('driverprofile.index');
 Route::get('/driverprofile/edit', [DriverProfileController::class, 'edit'])->name('driverprofile.edit');
+// Route::post('/driverprofile/update', [DriverProfileController::class, 'update'])->name('profile.update');
+
 Route::put('/driverprofile', [DriverProfileController::class, 'update'])->name('driverprofile.update');
 Route::post('/logout', function () {
     Auth::logout();

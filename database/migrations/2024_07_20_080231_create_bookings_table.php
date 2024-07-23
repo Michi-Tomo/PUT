@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('dropoff_location');
             $table->string('taketime');
             $table->string('fare');
-            $table->float('pickup_lat')->nullable();
-            $table->float('pickup_lon')->nullable();
+            $table->double('pickup_lat')->nullable();
+            $table->double('pickup_lon')->nullable();
             $table->boolean('is_accepted')->nullable();
             $table->boolean('is_finished')->nullable();
             $table->timestamps();

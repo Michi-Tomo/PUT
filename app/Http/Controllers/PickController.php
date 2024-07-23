@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class PickController extends Controller
 {
@@ -44,6 +45,10 @@ class PickController extends Controller
     {
         $pickup = $request->query('pickup');
         $destination = $request->query('destination');
+
+        $drivers = User::where('is_driver', 1)->with('driverInfo')->get()->toArray();
+
+        // dd(['drivers' => $drivers]);
         
         return view('picks.result', [
             'pickup' => $pickup,
@@ -52,6 +57,13 @@ class PickController extends Controller
             'duration' => 0,  // Placeholder value
             'totalFare' => 0  // Placeholder value
         ]);
+    }
+
+    public function showRefuse()
+    {
+        $users = User::find(Auth::user()->id);
+        
+        return view('picks.refuse', ['users' => $users]);
     }
 
 }
