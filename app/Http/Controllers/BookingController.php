@@ -75,23 +75,22 @@ class BookingController extends Controller
 
         $drivers = User::where('is_driver', 1)->with('driverInfo')->get()->toArray();
 
+        $pickupResult = sqrt(
+            (pow(floatval($request->lat), 2) + 
+            pow(floatval($request->lon), 2))
+        );
+
         $nearestDriverId = null;
         $nearestResult = null;
         foreach($drivers as $driver) {
-            $latResult = 
-                floatval($driver['driver_info']['location_lat']) -
-                floatval($request->lat);
-            $lonResult = 
-                floatval($driver['driver_info']['location_lon']) -
-                floatval($request->lon);
+            $currentResult = sqrt(
+                (pow(floatval($driver['driver_info']['location_lat']), 2) + 
+                pow(floatval($driver['driver_info']['location_lon']), 2))
+            );
+            $result = abs($pickupResult - $currentResult);
 
-            $currentResult = sqrt((pow($latResult, 2) + pow($lonResult, 2)));
-
-            
-            if(
-                is_null($nearestDriverId) || 
-                $nearestResult <= $currentResult
-            ) {
+            if(is_null($nearestResult) || $result <= $nearestResult) {
+                $nearestResult = $result;
                 $nearestDriverId = $driver['id'];
             }
         }
