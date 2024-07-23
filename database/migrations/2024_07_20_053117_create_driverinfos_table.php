@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('driver_license');
             $table->string('license_plate');
             $table->foreignId('user_id')->constrained();
-            $table->float('location_lat')->nullable();
-            $table->float('location_lon')->nullable();
+            $table->double('location_lat')->nullable();
+            $table->double('location_lon')->nullable();
             $table->timestamps();
         });
     }

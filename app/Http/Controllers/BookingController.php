@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Driverinfo;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -72,18 +73,43 @@ class BookingController extends Controller
         //     'destination' => 'required|string|max:255',
         // ]);
 
+        $drivers = User::where('is_driver', 1)->with('driverInfo')->get()->toArray();
+
+        $nearestDriverId = null;
+        $nearestResult = null;
+        foreach($drivers as $driver) {
+            $latResult = 
+                floatval($driver['driver_info']['location_lat']) -
+                floatval($request->lat);
+            $lonResult = 
+                floatval($driver['driver_info']['location_lon']) -
+                floatval($request->lon);
+
+            $currentResult = sqrt((pow($latResult, 2) + pow($lonResult, 2)));
+
+            
+            if(
+                is_null($nearestDriverId) || 
+                $nearestResult <= $currentResult
+            ) {
+                $nearestDriverId = $driver['id'];
+            }
+        }
+
         // 新しい予約を作成
         $booking = new Booking;
         $booking->user_id = auth()->id(); // 現在のログインユーザーIDを保存
-        $booking->driver_id = 1; // ドライバーID (仮に1に設定。実際のアプリでは動的に設定する必要がある)
+        $booking->driver_id = $nearestDriverId; // ドライバーID (仮に1に設定。実際のアプリでは動的に設定する必要がある)
         $booking->pickup_location = $request->pickup_location;
         $booking->dropoff_location = $request->dropoff_location;
         $booking->taketime = $request->taketime;
         $booking->fare = $request->fare;
+        $booking->pickup_lat = $request->lat;
+        $booking->pickup_lon = $request->lon;
         $booking->save();
 
         // 結果表示画面にリダイレクト
-        return redirect()->route('booking.show', $booking->id);
+        return redirect()->route('picks.refuse', $booking->id);
     }
 
     /**
