@@ -80,11 +80,9 @@ Route::get('/mypage', [ProfileController::class, 'index'])->name('profile.index'
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
-Route::get('/drivermypage', [DriverProfileController::class, 'index'])->name('driverprofile.index');
+Route::get('/driverprofile', [DriverProfileController::class, 'index'])->name('driverprofile.index');
 Route::get('/driverprofile/edit', [DriverProfileController::class, 'edit'])->name('driverprofile.edit');
-Route::post('/driverprofile/update', [DriverProfileController::class, 'update'])->name('profile.update');
-
-
+Route::put('/driverprofile', [DriverProfileController::class, 'update'])->name('driverprofile.update');
 Route::post('/logout', function () {
     Auth::logout();
     return redirect('/home');
