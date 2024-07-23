@@ -18,7 +18,7 @@
             width: 100%;
             height: 400px;
             margin: 0;
-            margin-bottom: 20px; /* Add margin bottom to create space */
+            margin-bottom: 20px; /* Add margin bottom to create space */    
         }
         form {
             display: flex;
