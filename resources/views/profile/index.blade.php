@@ -13,7 +13,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between;
+            justify-content: flex-start;
             height: 100vh;
             background-color: #e9ecef;
         }
@@ -21,47 +21,49 @@
         .container {
             text-align: center;
             width: 100%;
-            flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            align-items: center;
             padding: 20px;
+            margin-top: 13px; /* 画像との距離を調整 */
         }
 
         .profile-details {
-            background: #ffffff;
-            padding: 30px;
-            margin: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            color: #343a40;
+            width: 80%;
+            margin-top: 20px; /* 追加: 画像との距離を調整 */
+            font-size: 1.5rem; /* 文字を大きくする */
         }
 
         .profile-details h1 {
-            margin-bottom: 20px;
-            color: #343a40;
+            margin-bottom: 15px;
+            font-size: 2rem; /* 文字を大きくする */
         }
 
         .profile-details p {
             margin: 10px 0;
             color: #495057;
-            font-size: 1rem;
+            font-size: 1.2rem; /* 文字を大きくする */
         }
 
-        .edit-button, .logout-button {
-            background-color: #007bff;
-            color: white;
+        .icon-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .icon-button {
+            background: none;
             border: none;
-            padding: 10px 25px;
-            border-radius: 5px;
+            color: #6c757d;
             cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            margin: 10px 5px;
-            transition: background-color 0.3s;
+            font-size: 2.5rem; /* 文字を大きくする */
+            margin: 0 15px;
+            transition: color 0.3s;
         }
 
-        .edit-button:hover, .logout-button:hover {
-            background-color: #0056b3;
+        .icon-button:hover {
+            color: #343a40;
         }
 
         .menu-bar {
@@ -90,28 +92,43 @@
         }
 
         .menu-item a i {
-            font-size: 1.5rem;
+            font-size: 2rem;
             margin-bottom: 5px;
         }
 
         .menu-item a span {
-            font-size: 0.875rem;
+            font-size: 1.2rem; /* 文字を大きくする */
+        }
+
+        .header-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            margin-top: 94px;
         }
     </style>
 </head>
 <body>
+    <img src="{{ asset('images/put.png') }}" alt="Header Image" class="header-image">
+
     <div class="container">
         <div class="profile-details">
-            <h1>マイページ</h1>
+            <h1></h1>
             <p>ようこそ、{{ Auth::user()->name }}さん</p>
             <p>メールアドレス: {{ Auth::user()->email }}</p>
             <p>電話番号: {{ Auth::user()->phone }}</p>
             
-            <a href="{{ route('profile.edit') }}" class="edit-button">編集</a>
-            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
-                @csrf
-                <button type="submit" class="logout-button">ログアウト</button>
-            </form>
+            <div class="icon-buttons">
+                <a href="{{ route('profile.edit') }}" class="icon-button" title="編集">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <form action="{{ route('logout') }}" method="POST" style="display: inline;" onsubmit="return confirmLogout();">
+                    @csrf
+                    <button type="submit" class="icon-button" title="ログアウト">
+                        <i class="bi bi-box-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -141,5 +158,11 @@
             </a>
         </div>
     </div>
+
+    <script>
+        function confirmLogout() {
+            return confirm('ログアウトしますか？');
+        }
+    </script>
 </body>
 </html>

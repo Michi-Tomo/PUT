@@ -45,7 +45,7 @@
             padding: 10px;
             font-size: 16px;
             width: 100%; /* Adjust the width to fit the form */
-            background-color: #e6e6fa; /* Light purple background */
+            background-color:; /* Light purple background */
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
