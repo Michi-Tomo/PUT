@@ -102,12 +102,14 @@
     <div id="map"></div>
    
    
-        <form action="">
+        <form action="" method="">
             @csrf
+          
             <button type="submit" class="btn btn-primary">
                 <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
                 Pick Up
             </button>
+            
 
             <div class="driver-info1">
                 <div class="driver-image">
@@ -125,7 +127,7 @@
             </div>
             </div>
         </form>
-  
+        <a href="{{ route('booking.decision') }}" class="">Pick Up</a>
 
     {{-- @foreach ($users as  $user)
     

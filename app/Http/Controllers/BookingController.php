@@ -35,6 +35,7 @@ class BookingController extends Controller
         ->whereNull('is_accepted')
         ->orderBy('id', 'DESC')
         ->first();
+        // return redirect()->route('bookings.decision', ['booking' => $booking]);
         return view('bookings.decision', ['booking' => $booking]);
     }
     public function showRefuse()
