@@ -94,6 +94,20 @@
     margin-bottom: 5px;
 }
 
+.btn-pickup {
+    display: block;
+    width: 30%;
+    padding: 15px 0;
+    margin: auto;
+    background: #3c779f;
+    color: #FFF;
+    text-decoration: none;
+    text-align: center;
+}
+.btn-pickup:hover{
+    background: #5660d1;
+}
+
     </style>
 </head>
 <body>
@@ -105,10 +119,10 @@
         <form action="" method="">
             @csrf
           
-            <button type="submit" class="btn btn-primary">
+            {{-- <button type="submit" class="btn btn-primary">
                 <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
                 Pick Up
-            </button>
+            </button> --}}
             
 
             <div class="driver-info1">
@@ -122,12 +136,12 @@
                 </div>
 
                 <div class="rating">
-                    <p>あなたの平均評価 <br>{{ $averageRating ?? 'Not available' }}</p>
+                    <p>平均評価 <br>{{ $averageRating ?? 'Not available' }}</p>
                 </div>
             </div>
             </div>
         </form>
-        <a href="{{ route('booking.decision') }}" class="">Pick Up</a>
+        <a href="{{ route('booking.decision') }}" class="btn-pickup">Pick Up</a>
 
     {{-- @foreach ($users as  $user)
     
