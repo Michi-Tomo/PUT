@@ -9,58 +9,50 @@
 </head>
 
 <style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
     .container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        height: 140vh;
+        justify-content: center; /* 上下の中央に配置 */
+        height: 106vh; /* コンテナの高さを画面全体に合わせる */
     }
     .logo {
-        margin-bottom: 50px;
+        margin-bottom: 30px; /* ロゴと以下の要素の距離を詰める */
     }
     .logo img {
-        width: 300px; /* ロゴの幅を300pxに設定 */
+        width: 420px; /* ここでロゴの幅を調整 */
         height: auto; /* 高さを自動調整 */
+        margin-left: 22px;
     }
-    /* .auth-buttons {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        } */
+    .below2 {
+        margin: 20px 0; /* ログインの位置を上に */
+        width: 400px;
+        text-align: center;
+        font-size: 25px;
+    }
 
-        /* .below {
-            margin: 40px 0; /* ボタン間の余白を設定 */
-            /* width: 400px;
-            text-align: center;
-            font-size: 25px;
-        } */ 
-
-        .below2 {
-            margin: 100px 0;
-            width: 400px;
-            text-align: center;
-            font-size: 25px;
-        }
-
-        .below3 {
-            margin: 60px 0;
-            width: 400px;
-            text-align: center;
-            font-size: 20px;
-        }
+    .below3 {
+        margin: 10px 0; /* 新規登録の位置を詰める */
+        width: 400px;
+        text-align: center;
+        font-size: 20px;
+    }
 </style>
 
 <body>
     <div class="container">
-        <div class="above">
-            <img class="loginimg" src="{{ asset('images/pickup2.png') }}" alt="">
+        <div class="logo">
+            <img class="loginimg" src="{{ asset('images/jp.png') }}" alt="Logo">
         </div>
-        {{-- <div class="below">
-            <a href="{{ route('login') }}" class="button">乗客</a>
-        </div> --}}
+
         <div class="below2">
-            <a href="{{ route('login') }}" class="button">ログイン</a>
+            <a href="{{ route('login') }}" class="button">ログインする</a>
+        </div>
         <div class="below3">
             会員ではないですか？<a href="{{ route('register') }}" class="button">新規登録する</a>
         </div>
