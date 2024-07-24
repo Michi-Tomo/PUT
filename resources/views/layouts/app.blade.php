@@ -22,13 +22,7 @@
 
     
     <style>
-        .bike-illustration {
-            width: 200px; /* 画像の幅を大きくする */
-            height: 170px; /* 画像の高さを大きくする */
-            background: url('/images/pickup4.png') no-repeat center center;
-            background-size: contain;
-            margin: 20px auto; /* 中央に配置 */
-        }
+ 
 
         .road {
             width: 110%;
@@ -43,14 +37,14 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Pick Up Tokyo
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> --}}
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
