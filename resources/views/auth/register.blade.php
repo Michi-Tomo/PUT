@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -99,8 +98,6 @@
                                 <input id="driver_image" type="file" name="driver_image" class="col-md-4 col-form-label text-md-end">{{ __('登録用の顔写真') }}
 
                             <div class="col-md-6">
-                                {{-- <input id="driver_image" type="text" class="form-control @error('driver_image') is-invalid @enderror" name="driver_image" value="{{ old('driver_image') }}" required autocomplete="driver_image" autofocus> --}}
-
                                 @error('driver_image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -108,7 +105,6 @@
                                 @enderror
                             </div>
                         </div>
-
 
                         <div class="row mb-3">
                             <label for="age" class="col-md-4 col-form-label text-md-end">{{ __('年齢') }}</label>
@@ -154,30 +150,14 @@
 
                         </div>
 
-
-                        <div style="display: flex; justify-content: space-between;">
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('新規登録') }}
-                                    </button>
-                                </div>
-
+                        <div class="row mb-0 justify-content-center">
+                            <div class="col-md-6 text-center">
+                                <button type="submit" class="btn btn-pink btn-lg btn-block">
+                                    <i class="bi bi-pencil-square"></i> {{ __('新規登録する') }}
+                                </button>
                             </div>
                         </div>
                     </form>
-
-                    {{-- <div class="row mb-0">
-                        <div class="col-md-6 offset-md-4" >
-                            <form action="/driver" method="get">
-                                @csrf
-                                <button type="submit" class="btn btn-primary">
-                                    {{  __('ドライバーの新規登録') }}
-                                </button>
-                            </form>
-                        </div>
-                    </div> --}}
-
                 </div>
             </div>
         </div>
@@ -186,7 +166,6 @@
 
 <script>
     function handleClick(value) {
-        // alert(value.value);
         const driver_infos = document.getElementById('driver_infos');
         if (value.value == 0){
             driver_infos.style.display="none";
@@ -195,4 +174,21 @@
         }
     }
 </script>
+
+<style>
+    .btn-pink {
+        border-radius: 0;
+        background-color: #5f5d5d;
+        border-color: #000000;
+        color: #ffffff;
+        font-size: 1.2rem;
+        padding: 0.75rem 1.5rem;
+    }
+    .btn-pink:hover {
+        background-color: #141414;
+        border-color: #000000;
+        color: #ffffff;
+    }
+</style>
+
 @endsection
