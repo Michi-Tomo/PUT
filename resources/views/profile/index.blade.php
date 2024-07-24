@@ -163,6 +163,24 @@
         function confirmLogout() {
             return confirm('ログアウトしますか？');
         }
+
+        document.getElementById('logout-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // フォームのデフォルト送信を防ぐ
+            // フォームを送信
+            fetch(this.action, {
+                method: this.method,
+                body: new FormData(this)
+            }).then(response => {
+                if (response.ok) {
+                    window.location.href = '/vendor/top.blade.php'; // 成功したらトップページにリダイレクト
+                } else {
+                    alert('ログアウトに失敗しました。再度お試しください。');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('ログアウトに失敗しました。再度お試しください。');
+            });
+        });
     </script>
 </body>
 </html>

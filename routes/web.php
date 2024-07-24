@@ -90,7 +90,7 @@ Route::get('/driverprofile/edit', [DriverProfileController::class, 'edit'])->nam
 Route::put('/driverprofile', [DriverProfileController::class, 'update'])->name('driverprofile.update');
 Route::post('/logout', function () {
     Auth::logout();
-    return redirect('/home');
+    return redirect('/');
 })->name('logout');
 
 //matching 
