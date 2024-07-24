@@ -81,7 +81,7 @@
             </div>
 
             <div class="rating">
-                <p>あなたの平均評価 <br>{{ $averageRating ?? 'Not available' }}</p>
+                <p>あなたの平均評価 <br></p>
             </div>
         </div>
         </div>
@@ -94,7 +94,8 @@
 
     <div class="response-buttons">
         <a href="{{ route('picks.search') }}" class="yes">キャンセル</a>
-        <a href="{{ route('picks.driving') }}" class="no">乗車</a>
+        <a href="{{ route('rate.show') }}" class="yes">降車</a>
+        {{-- <a href="{{ route('picks.driving') }}" class="no">乗車</a> --}}
     </div>
 
     {{-- <form action="{{ route('picks.store') }}" method="POST">

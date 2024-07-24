@@ -56,24 +56,25 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-
+//PickController
 Route::get('/picks/search', [PickController::class, 'search'])->name('picks.search');
 Route::post('/picks/search/submit', [PickController::class, 'store'])->name('picks.search.submit'); // store action for form submission
 Route::post('/picks/search', [PickController::class, 'store'])->name('picks.store');
 Route::get('/picks/result', [PickController::class, 'result'])->name('picks.result');
 Route::get('/picks/refuse', [PickController::class, 'showRefuse'])->name('picks.refuse');
+Route::get('/picks/driving', [PickController::class, 'driving'])->name('picks.driving');
 
 
-
-
+//RateController
 Route::get('/rate', [RatingController::class, 'show'])->name('rate.show');
 Route::post('/rate', [RatingController::class, 'store'])->name('rate.store');
 
 //BookingController
-//表示
 Route::get('/bookings/accept', [BookingController::class, 'showAccept'])->name('booking.accept');
 Route::get('/bookings/decision', [BookingController::class, 'showDecision'])->name('booking.decision');
 Route::get('/bookings/refuse', [BookingController::class, 'showRefuse'])->name('booking.refuse');
+Route::get('/bookings/drop', [BookingController::class, 'drop'])->name('bookings.drop');
+
 
 //APIからデータの取得
 Route::post('/picks/result/store', [BookingController::class, 'store'])->name('bookings.store');

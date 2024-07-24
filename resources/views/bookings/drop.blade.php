@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>どこ行く？</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -60,6 +61,34 @@
         .driver-info2 {
             margin-left: 50px;
         }
+
+        button, .response-buttons a {
+            cursor: pointer;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 20px;
+            text-decoration: none;
+            text-align: center;
+            display: inline-block;
+            width: calc(100% - 20px);
+            color: white;
+            border-radius: 4px;
+        }
+        .response-buttons {
+            display: flex;
+            justify-content: space-around;
+
+        }
+        .response-buttons a {
+            width: 30%;
+        }
+        .response-buttons .yes {
+            background-color: #28a745; /* Green */
+        }
+        .response-buttons .no {
+            background-color: #dc3545; /* Red */
+        }
+        
     </style>
 </head>
 <body>
@@ -81,7 +110,7 @@
             </div>
 
             <div class="rating">
-                <p>あなたの平均評価 <br>{{ $averageRating ?? 'Not available' }}</p>
+                <p>あなたの平均評価 <br></p>
             </div>
         </div>
         </div>
@@ -90,12 +119,16 @@
             <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
             キャンセル
         </button>
+        
     </form>
 
     <div class="response-buttons">
-        <a href="{{ route('picks.search') }}" class="yes">キャンセル</a>
-        <a href="{{ route('picks.driving') }}" class="no">乗車</a>
+        <a href="{{ route('booking.accept') }}" class="no">降車</a>
     </div>
+
+    {{-- <div class="response-buttons">
+        <a href="{{ route('booking.accept') }}" class="yes">降車</a>
+    </div> --}}
 
     {{-- <form action="{{ route('picks.store') }}" method="POST">
         @csrf

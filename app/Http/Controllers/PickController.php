@@ -49,7 +49,7 @@ class PickController extends Controller
         $drivers = User::where('is_driver', 1)->with('driverInfo')->get()->toArray();
 
         // dd(['drivers' => $drivers]);
-        
+
         return view('picks.result', [
             'pickup' => $pickup,
             'destination' => $destination,
@@ -66,6 +66,10 @@ class PickController extends Controller
         return view('picks.refuse', ['users' => $users]);
     }
 
+    public function driving()
+    {
+        return view('picks.driving');
+    }
 }
 
 

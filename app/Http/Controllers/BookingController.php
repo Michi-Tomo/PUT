@@ -22,7 +22,7 @@ class BookingController extends Controller
 
         if($user_type == 0) {
             //ユーザーページに飛ぶ
-            return view('picks.search');
+            return route('picks.search');
         } else if($user_type == 1) {
             //ドライバーぺージに飛ぶ！
             $users = Driverinfo::where('user_id', $user->id)->first();
@@ -43,7 +43,6 @@ class BookingController extends Controller
 
         $user_type = Auth::user()->is_driver;
         
-
         if($user_type == 0) {
             //ユーザーページに飛ぶ
             return view('picks.search');
@@ -155,6 +154,22 @@ class BookingController extends Controller
     return view('accept', ['driver' => $driver, 'driver_image' => $driver_image]);
 
 }
+
+    public function drop()
+    {
+        $user = Auth::user();
+
+        $user_type = Auth::user()->is_driver;
+        
+        if($user_type == 0) {
+            //ユーザーページに飛ぶ
+            return view('picks.search');
+        } else if($user_type == 1) {
+            //ドライバーぺージに飛ぶ！
+            $users = Driverinfo::where('user_id', $user->id)->first();
+            return view('bookings.drop', compact('users'));
+        }
+    }
 
 
 }
