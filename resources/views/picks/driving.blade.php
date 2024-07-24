@@ -94,7 +94,8 @@
 
     <div class="response-buttons">
         <a href="{{ route('picks.search') }}" class="yes">キャンセル</a>
-        <a href="{{ route('picks.driving') }}" class="no">乗車</a>
+        <a href="{{ route('rate.show') }}" class="yes">降車</a>
+        {{-- <a href="{{ route('picks.driving') }}" class="no">乗車</a> --}}
     </div>
 
     {{-- <form action="{{ route('picks.store') }}" method="POST">
