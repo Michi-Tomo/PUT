@@ -86,15 +86,15 @@
         </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">
+        {{-- <button type="submit" class="btn btn-primary">
             <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
             キャンセル
-        </button>
+        </button> --}}
     </form>
 
     <div class="response-buttons">
         <a href="{{ route('picks.search') }}" class="yes">キャンセル</a>
-        <a href="{{ route('picks.driving') }}" class="no">乗車</a>
+        <a href="{{ route('bookings.drop') }}" class="no">乗車</a>
     </div>
 
     {{-- <form action="{{ route('picks.store') }}" method="POST">

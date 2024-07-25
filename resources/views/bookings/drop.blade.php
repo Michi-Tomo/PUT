@@ -110,7 +110,7 @@
             </div>
 
             <div class="rating">
-                <p>あなたの平均評価 <br></p>
+                <p>平均評価 <br></p>
             </div>
         </div>
         </div>
