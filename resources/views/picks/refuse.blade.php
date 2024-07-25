@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>どこ行く？</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,6 +60,50 @@
         }
         .driver-info2 {
             margin-left: 50px;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+        #map {
+            width: 100%;
+            height: 50vh; /* Adjust the height as needed */
+            margin: 0;
+        }
+        .container {
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .result-info {
+            font-size: 20px; /* Make the text larger */
+            margin: 20px 0;
+        }
+        .result-info p {
+            margin: 10px 0;
+        }
+        .result-info svg, .result-info i {
+            font-size: 24px; /* Adjust icon size */
+            margin-right: 10px; /* Space between icon and text */
+        }
+        button {
+            cursor: pointer;
+            padding: 10px;
+            font-size: 16px;
+            width: 100%; /* Adjust the width to fit the form */
+            box-sizing: border-box;
+        }
+        .back-button {
+            position: fixed;
+            bottom: 30px; /* Adjusted for higher position */
+            left: 30px; /* Adjusted for more right position */
+            font-size: 30px;
+            color: #000;
+            cursor: pointer;
+            font-weight: bold; /* To ensure the < mark is bold */
         }
     </style>
 </head>
@@ -127,43 +172,75 @@
     
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script>
-        var map = L.map('map');
-
-        // Default center to Tokyo
-        map.setView([35.681167, 139.767052], 13);
+        var map = L.map('map').setView([35.681167, 139.767052], 13); // 初期表示の中心位置を設定
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        function updateMapWithCurrentLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var lat = position.coords.latitude;
-                    var lon = position.coords.longitude;
+        function plotRoute(pickup, destination) {
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${pickup}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        alert('乗車地が見つかりません');
+                        return;
+                    }
+                    var pickupLatLng = [data[0].lat, data[0].lon];
 
-                    // Center map on current location
-                    map.setView([lat, lon], 13);
+                    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${destination}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.length === 0) {
+                                alert('目的地が見つかりません');
+                                return;
+                            }
+                            var destinationLatLng = [data[0].lat, data[0].lon];
 
-                    // Add marker for current location
-                    L.marker([lat, lon]).addTo(map)
-                        .bindPopup('現在地')
-                        .openPopup();
-                }, function(error) {
-                    console.error('Error getting location:', error);
-                    alert('Unable to retrieve your location. Error code: ' + error.code);
-                }, {
-                    enableHighAccuracy: true, // Request high accuracy
-                    timeout: 5000, // Set timeout to 5 seconds
-                    maximumAge: 0 // Do not use cached location
+                            var routingControl = L.Routing.control({
+                                waypoints: [
+                                    L.latLng(pickupLatLng[0], pickupLatLng[1]),
+                                    L.latLng(destinationLatLng[0], destinationLatLng[1])
+                                ],
+                                routeWhileDragging: true
+                            }).addTo(map);
+
+                            routingControl.on('routesfound', function(e) {
+                                var routes = e.routes;
+                                var summary = routes[0].summary;
+
+                                var distance = summary.totalDistance / 1000;
+                                var duration = summary.totalTime / 60;
+
+                                var baseFare = 100;
+                                var additionalFarePerKm = 35;
+                                var additionalDistance = Math.max(0, distance - 0.5);
+
+                                var totalFare = baseFare + (additionalDistance * additionalFarePerKm);
+                                var formattedFare = Math.ceil(totalFare);
+
+                                // document.getElementById('duration').value = Math.ceil(duration) + ' 分';
+                                // document.getElementById('fare').value = formattedFare;
+                                // document.getElementById('duration2').value = Math.ceil(duration) + ' 分';
+                                // document.getElementById('fare2').value = formattedFare;
+                            });
+                        });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('位置情報の取得中にエラーが発生しました');
                 });
-            } else {
-                alert('Geolocation is not supported by this browser.');
-            }
         }
 
-        updateMapWithCurrentLocation();
+        var pickup = "{{ $pickup }}";
+        var destination = "{{ $destination }}";
+        plotRoute(pickup, destination);
+
+        function goBack() {
+            window.location.href = "{{ route('picks.search') }}";
+        }
     </script>
 </body>
 </html>

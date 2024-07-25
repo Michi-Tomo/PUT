@@ -55,7 +55,42 @@
 </head>
 <body>
     <div id="map"></div>
-    <div class="container">
+    <form action="{{ route('bookings.store') }}" method="POST">
+        @csrf
+        <input type="text" id="lat" name="lat" hidden>
+        <input type="text" id="lon" name="lon" hidden>
+        <div>
+            <label for="">乗車地:</label>
+            <input type="text" name="pickup_location" value="{{ $pickup }}" hidden>
+            <input type="text" value="{{ $pickup }}" disabled>
+        </div>
+
+        <div>
+            <label for="">目的地:</label>
+            <input type="text" name="dropoff_location" value="{{ $destination }}" hidden>
+            <input type="text" value="{{ $destination }}" disabled>
+        </div>
+
+        <div>
+            <label for="">推定時間:</label>
+            <input type="text" name="taketime" value="{{ $duration }}" id="duration2" hidden>
+            <input type="text" value="{{ $duration }}" id="duration" disabled>
+        </div>
+
+        <div>
+            <label for="">価格:</label>
+            <input type="text" name="fare" value="{{ $totalFare }}" id="fare2" hidden>
+            <input type="text" value="{{ $totalFare }}" id="fare" disabled>
+        </div>
+        
+        {{-- <p><strong>乗車地:</strong> {{ $pickup }}</p> --}}
+        {{-- <p><strong>目的地:</strong> {{ $destination }}</p> --}}
+        {{-- <p><strong>推定時間:</strong> <span id="duration">{{ $duration }}</span></p>
+        <p><strong>価格:</strong> ¥<span id="fare">{{ $totalFare }}</span></p> --}}
+
+        <button type="submit">予約</button>
+    </form>
+    {{-- <div class="container">
         <div class="result-info">
             <p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-raised-hand" viewBox="0 0 16 16">
@@ -69,9 +104,9 @@
             <p><i class="bi bi-currency-yen"></i> <strong>推定料金:</strong> ¥<span id="fare">{{ $totalFare }}</span></p>
         </div>
 
-        {{-- <button type="button" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> 予約</button> --}}
+        <button type="button" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> 予約</button>
         <a href="{{ route ('picks.refuse') }}">予約</a>
-    </div>
+    </div> --}}
 
     <div class="back-button" onclick="goBack()">
         &lt;
@@ -105,6 +140,9 @@
                             }
                             var destinationLatLng = [data[0].lat, data[0].lon];
 
+                            const lat = document.getElementById('lat').value = data[0].lat
+                            const lon = document.getElementById('lon').value = data[0].lon
+
                             var routingControl = L.Routing.control({
                                 waypoints: [
                                     L.latLng(pickupLatLng[0], pickupLatLng[1]),
@@ -127,8 +165,10 @@
                                 var totalFare = baseFare + (additionalDistance * additionalFarePerKm);
                                 var formattedFare = Math.ceil(totalFare);
 
-                                document.getElementById('duration').textContent = Math.ceil(duration) + ' 分';
-                                document.getElementById('fare').textContent = formattedFare;
+                                document.getElementById('duration').value = Math.ceil(duration) + ' 分';
+                                document.getElementById('fare').value = formattedFare;
+                                document.getElementById('duration2').value = Math.ceil(duration) + ' 分';
+                                document.getElementById('fare2').value = formattedFare;
                             });
                         });
                 })

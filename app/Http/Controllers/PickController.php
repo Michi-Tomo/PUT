@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
+use App\Models\Driverinfo;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,8 +64,17 @@ class PickController extends Controller
     public function showRefuse()
     {
         $users = User::find(Auth::user()->id);
+        $userLatestBooking = Booking::where('user_id', Auth::user()->id)
+        ->orderBy('id', 'DESC')->first();
+        $userPickupLocation = $userLatestBooking->pickup_location;
+        $driverLocation = Driverinfo::where('user_id', $userLatestBooking->driver_id)
+        ->pluck('driver_location')->first();
         
-        return view('picks.refuse', ['users' => $users]);
+        return view('picks.refuse', [
+            'users' => $users,
+            'pickup' => $userPickupLocation,
+            'destination' => $driverLocation,
+        ]);
     }
 
     public function driving()

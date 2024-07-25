@@ -40,18 +40,18 @@ class BookingController extends Controller
     }
     public function showRefuse()
     {
-        $user = Auth::user();
-
-        $user_type = Auth::user()->is_driver;
+        $users = User::find(Auth::user()->id);
+        $userLatestBooking = Booking::where('driver_id', Auth::user()->id)
+        ->orderBy('id', 'DESC')->first();
+        $userPickupLocation = $userLatestBooking->pickup_location;
+        $driverLocation = Driverinfo::find(Auth::user()->id)
+        ->driver_location;
         
-        if($user_type == 0) {
-            //ユーザーページに飛ぶ
-            return view('picks.search');
-        } else if($user_type == 1) {
-            //ドライバーぺージに飛ぶ！
-            $users = Driverinfo::where('user_id', $user->id)->first();
-            return view('bookings.refuse', compact('users'));
-        }
+        return view('picks.refuse', [
+            'users' => $users,
+            'pickup' => $userPickupLocation,
+            'destination' => $driverLocation,
+        ]);
     }
 
     /**
