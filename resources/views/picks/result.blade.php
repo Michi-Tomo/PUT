@@ -74,6 +74,9 @@
 
         <button type="submit">予約</button>
     </form>
+    <div>
+        <a href="javascript:history.back()">検索ページに戻る</a>
+    </div>
 
     @push('js')
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
