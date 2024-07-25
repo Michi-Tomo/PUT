@@ -15,7 +15,7 @@
             align-items: center;
             justify-content: flex-start;
             height: 100vh;
-            background-color: #e9ecef;
+            background-color: #ffffff;
         }
 
         .container {
