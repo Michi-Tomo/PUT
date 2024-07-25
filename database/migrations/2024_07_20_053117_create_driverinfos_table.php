@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->double('location_lat')->nullable();
             $table->double('location_lon')->nullable();
+            $table->string('driver_location')->nullable();
             $table->timestamps();
         });
     }
