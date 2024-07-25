@@ -138,6 +138,7 @@
     </div>
 </div>
 <a href="javascript:history.back()">前のページに戻る</a>
+
 <script>
     function handleClick(value) {
         const driver_infos = document.getElementById('driver_infos');

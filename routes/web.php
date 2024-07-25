@@ -13,6 +13,8 @@ use App\Http\Controllers\MatchingsController;
 
 use App\Http\Controllers\DriverProfileController;
 
+use App\Http\Controllers\ChatController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -98,3 +100,9 @@ Route::post('/logout', function () {
 //     return view('match');
 // });
 Route::get('/match', [MatchingsController::class, 'match'])->name('matchings.match');
+
+Route::get('/chat', [ChatController::class, 'index'])->name('chat');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/chat', [ChatController::class, 'index'])->name('chat');
+});

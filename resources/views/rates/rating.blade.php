@@ -144,9 +144,9 @@
             </a>
         </div>
         <div class="menu-item">
-            <a href="/messages">
+            <a href="/chatify">
                 <i class="bi bi-chat-dots-fill"></i>
-                <span>メッセージ</span>
+                <span>チャット</span>
             </a>
         </div>
         <div class="menu-item">
