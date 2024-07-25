@@ -16,15 +16,8 @@
         #map {
             width: calc(100% + 40px); /* Add 20px to each side */
             height: 400px;
-            margin: 0 -20px 20px -20px; /* Remove margin on left and right */
+            margin: -20px -20px 0 -20px; /* Remove margin on left and right and top */
         }
-        /* form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 400px;
-            margin: auto;
-        } */
         .input-group {
             display: flex;
             align-items: center;
@@ -54,143 +47,114 @@
         }
         .driver-info1 {
             display: flex;
-            margin-top: 30px;
-            margin-left: 10px;
+            margin-top: 10px;
+            align-items: center;
+            justify-content: space-between;
+            width: calc(100% - 20px); /* Adjust the width to fit the form */
+        }
+        .driver-image {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: 35px;
+        }
+        .driver-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .driver-info2 {
-            margin-left: 50px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            margin-left: 10px;
+        }
+        .license-plate {
+            background-color: #fff; /* White background */
+            color: #008000; /* Green text */
+            border: 1px solid #000000;
+            padding: 10px;
+            font-size: 24px; /* Larger font size */
+            font-weight: bold; /* Bold text */
+            text-align: center;
+            border-radius: 5px;
+            width: 80%;
+            margin-bottom: 5px;
+        }
+        .rating {
+            font-size: 18px;
         }
         .menu-bar {
-    width: 100%;
-    background-color: #333;
-    color: white;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-    left: 0; /* 左寄せにする */
-    margin: 0; /* 不要なマージンを取り除く */
-}
-
-.menu-item {
-    text-align: center;
-    flex: 1;
-    margin: 0; /* 不要なマージンを取り除く */
-}
-
-.menu-item a {
-    color: white;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0; /* 不要なマージンを取り除く */
-}
-
-.menu-item a i {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
-}
-
-.btn-pickup {
-    display: block;
-    width: 30%;
-    padding: 15px 0;
-    margin: auto;
-    background: #3c779f;
-    color: #FFF;
-    text-decoration: none;
-    text-align: center;
-}
-.btn-pickup:hover{
-    background: #5660d1;
-}
-
+            width: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            left: 0; /* 左寄せにする */
+            margin: 0; /* 不要なマージンを取り除く */
+        }
+        .menu-item {
+            text-align: center;
+            flex: 1;
+            margin: 0; /* 不要なマージンを取り除く */
+        }
+        .menu-item a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0; /* 不要なマージンを取り除く */
+        }
+        .menu-item a i {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        .btn-pickup {
+            display: block;
+            width: 100px;
+            height: auto;
+            overflow: hidden; /* Ensure image fits inside */
+            text-decoration: none;
+            margin: 45px auto; /* Center horizontally with margin */
+        }
+        .btn-pickup img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
     </style>
 </head>
 <body>
-    <h1></h1>
-
     <div id="map"></div>
-   
-   
-        <form action="" method="">
-            @csrf
-          
-            {{-- <button type="submit" class="btn btn-primary">
-                <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
-                Pick Up
-            </button> --}}
-            
 
-            <div class="driver-info1">
-                <div class="driver-image">
-                    <img src="{{ asset('storage/' . $users->driver_image) }}" alt="Driver Photo" style="width: 90px; height: 90px; border-radius: 50%; margin-top: 10px">
-                </div>
+    <a href="{{ route('booking.decision') }}" class="btn-pickup">
+        <img src="{{ asset('images/go2.png') }}" alt="Pick Up">
+    </a>
 
-            <div class="driver-info2">
-                <div class="license-plate">
-                    <p>登録済み車両番号 <br>{{ $users->license_plate ?? 'Not available' }}</p>
-                </div>
+    <div class="driver-info1">
+        <div class="driver-image">
+            <img src="{{ asset('storage/' . $users->driver_image) }}" alt="Driver Photo">
+        </div>
 
-                <div class="rating">
-                    <p>平均評価 <br>{{ $averageRating ?? 'Not available' }}</p>
-                </div>
+        <div class="driver-info2">
+            <div class="license-plate">
+                {{ $users->license_plate ?? 'Not available' }}
             </div>
-            </div>
-        </form>
-        <a href="{{ route('booking.decision') }}" class="btn-pickup">Pick Up</a>
 
-    {{-- @foreach ($users as  $user)
-    
-   
-
-
-    <form action="">
-            @csrf
-        <button type="submit" class="btn btn-primary">
-            <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
-            Pick Up
-        </button>
-            <!-- ドライバーの顔写真を表示 -->
-            <img src="{{ asset('storage/' .  $user->driver_image )}}" alt="Driver Photo" style="width: 100px; height: 100px;">
-
-            <!-- 他のドライバー情報も表示する -->
-            Driver Plate: <p> {{  $user->license_plate ?? null }}</p>
-    </form>
-    @endforeach --}}
-
-
-    {{-- <form action="{{ route('picks.store') }}" method="POST">
-        @csrf
-        <div class="mb-3" style="width: 100%;">
-            <label for="pickup">
-                <i class="bi bi-geo-alt-fill bi-2x"></i> <!-- Larger icon -->
-            </label>
-            <input type="text" id="pickup" name="pickup" class="form-control" placeholder="乗車地を入力" required>
+            {{-- <div class="rating">
+                平均評価<br>{{ $averageRating ?? 'Not available' }}
+            </div> --}}
         </div>
-        
-        <div class="input-group">
-            <span class="arrow-icon">
-                <i class="bi bi-arrow-down bi-3x"></i> <!-- Larger icon -->
-            </span>
-        </div>
-        
-        <div class="mb-3" style="width: 100%;">
-            <label for="destination">
-                <i class="bi bi-geo-fill bi-2x"></i> <!-- Larger icon -->
-            </label>
-            <input type="text" id="destination" name="destination" class="form-control" placeholder="目的地を入力" required>
-        </div>
-        
-        <button type="submit" class="btn btn-primary">
-            <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
-            選択
-        </button>
-    </form> --}}
-    
+    </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
@@ -230,8 +194,6 @@
         }
 
         updateMapWithCurrentLocation();
-
-        
     </script>
 
     <div class="menu-bar">
@@ -262,10 +224,3 @@
     </div>
 </body>
 </html>
-
-<!-- resources/views/layouts/app.blade.php (or wherever you include your layout) -->
-@if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
