@@ -68,7 +68,9 @@
             <p><i class="bi bi-clock"></i> <strong>推定時間:</strong> <span id="duration">{{ $duration }}</span></p>
             <p><i class="bi bi-currency-yen"></i> <strong>推定料金:</strong> ¥<span id="fare">{{ $totalFare }}</span></p>
         </div>
-        <button type="button" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> 予約</button>
+
+        {{-- <button type="button" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> 予約</button> --}}
+        <a href="{{ route ('picks.refuse') }}">予約</a>
     </div>
 
     <div class="back-button" onclick="goBack()">
