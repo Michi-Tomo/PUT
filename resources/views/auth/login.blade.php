@@ -61,6 +61,9 @@
 
 
 <style>
+    body {
+        overflow: hidden; /* Prevent scrolling */
+    }
     .btn-pink {
         border-radius: 0;
         background-color: #5f5d5d;
@@ -76,6 +79,12 @@
     }
     .container {
         min-height: 100vh;
+        margin-top: -65px;
+
     }
+
+    .mb-4 {
+    margin-bottom: 2.5rem !important;
+}
 </style>
 @endsection
