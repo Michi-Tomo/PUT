@@ -56,7 +56,7 @@
             border-radius: 4px;
         }
         .response-buttons .yes {
-            background-color: #28a745; /* Green */
+            background-color: #0044ff; /* Green */
         }
         .response-buttons .no {
             background-color: #dc3545; /* Red */
@@ -71,7 +71,7 @@
         <h2>お客様リクエスト情報</h2>
         <p><strong>乗車地:</strong> {{ $booking->pickup_location }}</p>
         <p><strong>目的地:</strong> {{ $booking->dropoff_location }}</p>
-        <p><strong>推定時間:</strong> <span id="duration">{{ $booking->taketime }}</span></p>
+        <p><strong>所要時間:</strong> <span id="duration">{{ $booking->taketime }}</span></p>
         <p><strong>料金:</strong> ¥<span id="fare">{{ $booking->fare }}</span></p>
     </div>
 
@@ -145,10 +145,10 @@
                                     var totalFare = baseFare + (additionalDistance * additionalFarePerKm);
 
                                     // Format the fare for display
-                                    var formattedFare = totalFare.toFixed(2);
+                                    var formattedFare = Math.ceil(totalFare);
 
-                                    // Update the duration and fare in the HTML
-                                    document.getElementById('duration').innerText = duration.toFixed(2) + ' 分';
+                                    // Update the duration and fare in the HTML with rounded up values
+                                    document.getElementById('duration').innerText = Math.ceil(duration) + ' 分';
                                     document.getElementById('fare').innerText = formattedFare;
                                 });
                             });
