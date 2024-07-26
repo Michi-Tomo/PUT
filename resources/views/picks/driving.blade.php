@@ -70,12 +70,12 @@
 
         <div class="driver-info1">
             <div class="driver-image">
-                <img src="{{ asset('storage/' . $users->driver_image) }}" alt="Driver Photo" style="width: 90px; height: 90px; border-radius: 50%; margin-top: 10px">
+                <img src="{{ asset('storage/' . $driver_info->driver_image) }}" alt="Driver Photo" style="width: 90px; height: 90px; border-radius: 50%; margin-top: 10px">
             </div>
 
             <div class="driver-info2">
                 <div class="license-plate">
-                    <p>登録済み車両番号 <br>{{ $users->license_plate ?? 'Not available' }}</p>
+                    <p>登録済み車両番号 <br>{{ $driver_info->license_plate ?? 'Not available' }}</p>
                 </div>
 
                 <div class="rating">
