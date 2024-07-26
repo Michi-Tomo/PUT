@@ -137,7 +137,7 @@
     <div id="map"></div>
 
     <a href="{{ route('booking.decision') }}" class="btn-pickup">
-        <img src="{{ asset('images/go2.png') }}" alt="Pick Up">
+        <img src="{{ asset('images/go.png') }}" alt="Pick Up">
     </a>
 
     <div class="driver-info1">
