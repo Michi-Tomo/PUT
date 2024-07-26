@@ -47,7 +47,7 @@ class BookingController extends Controller
         $driverLocation = Driverinfo::find(Auth::user()->id)
         ->driver_location;
         
-        return view('picks.refuse', [
+        return view('bookings.refuse', [
             'users' => $users,
             'pickup' => $userPickupLocation,
             'destination' => $driverLocation,
