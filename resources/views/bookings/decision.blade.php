@@ -2,6 +2,7 @@
 @push('css')
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
     <style>
         html, body {
             height: 100%;
@@ -23,10 +24,11 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             background-color: #f9f9f9;
             text-align: center;
+            font-size: 24px; /* Increase font size */
         }
         .info-section h2 {
             margin: 0 0 15px 0;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
         }
         .info-section p {
@@ -43,23 +45,28 @@
         .response-buttons {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 5px; /* Reduced gap to 5px */
         }
-        .response-buttons a {
+        .button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             cursor: pointer;
-            padding: 10px;
-            font-size: 16px;
             text-decoration: none;
-            text-align: center;
-            width: 100px;
-            color: white;
-            border-radius: 4px;
+            margin: 0 35px; /* Add small margin to balance */
         }
-        .response-buttons .yes {
-            background-color: #0044ff; /* Green */
+        .button i {
+            font-size: 36px;
         }
-        .response-buttons .no {
-            background-color: #dc3545; /* Red */
+        .yes i {
+            color: #2c4bff; /* Blue color for the icon */
+        }
+        .no i {
+            color: #ff0000; /* Red color for the icon */
+        }
+        .button span {
+            font-size: 20px; /* Increase text size */
+            color: #000000;
         }
     </style>
 @endpush
@@ -69,17 +76,21 @@
 
     <div class="info-section">
         <h2>お客様リクエスト情報</h2>
-        <p><strong>乗車地:</strong> {{ $booking->pickup_location }}</p>
-        <p><strong>目的地:</strong> {{ $booking->dropoff_location }}</p>
-        <p><strong>所要時間:</strong> <span id="duration">{{ $booking->taketime }}</span></p>
-        <p><strong>料金:</strong> ¥<span id="fare">{{ $booking->fare }}</span></p>
+        <p>{{ $booking->pickup_location }} ➡ {{ $booking->dropoff_location }}</p>
+        <p><span id="duration">{{ $booking->taketime }}分</span>・<span id="fare">{{ $booking->fare }}円</span></p>
     </div>
 
     <div class="response-buttons-container">
         <h2>ピックアップしますか？</h2>
         <div class="response-buttons">
-            <a href="{{ route('booking.refuse') }}" class="yes">はい</a>
-            <a href="{{ route('booking.accept') }}" class="no">いいえ</a>
+            <a href="{{ route('booking.accept') }}" class="button no">
+                <i class="bi bi-x-circle-fill"></i>
+                <span>いいえ</span>
+            </a>
+            <a href="{{ route('booking.refuse') }}" class="button yes">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>はい</span>
+            </a>
         </div>
     </div>
 
@@ -149,7 +160,7 @@
 
                                     // Update the duration and fare in the HTML with rounded up values
                                     document.getElementById('duration').innerText = Math.ceil(duration) + ' 分';
-                                    document.getElementById('fare').innerText = formattedFare;
+                                    document.getElementById('fare').innerText = formattedFare + ' 円';
                                 });
                             });
                     })
