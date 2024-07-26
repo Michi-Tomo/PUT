@@ -28,13 +28,14 @@ class Driverinfo extends Model
 
     public function averageRating()
     {
-        return $this->ratings()->avg('rating');
+        return $this->ratings->avg('rating');
     }
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
+
 }
 
 
