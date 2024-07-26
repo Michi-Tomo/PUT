@@ -61,10 +61,10 @@
             font-size: 36px;
         }
         .reservation-button i {
-            color: #ff0000; /* Red color for the icon */
+            color: #2c4bff; /* Red color for the icon */
         }
         .cancel-button i {
-            color: #0000ff; /* Blue color for the icon */
+            color: #ff0000; /* Blue color for the icon */
         }
         .button span {
             font-size: 20px; /* Increase text size */
