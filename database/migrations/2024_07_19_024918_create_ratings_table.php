@@ -11,7 +11,7 @@ class CreateRatingsTable extends Migration
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
             $table->integer('rating');
-            $table->string('is_driver');
+            $table->string('driver_id')->constrained();;
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
