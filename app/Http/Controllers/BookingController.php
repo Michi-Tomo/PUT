@@ -75,19 +75,35 @@ class BookingController extends Controller
 
         $drivers = User::where('is_driver', 1)->with('driverInfo')->get()->toArray();
 
-        $pickupResult = sqrt(
-            (pow(floatval($request->lat), 2) + 
-            pow(floatval($request->lon), 2))
-        );
+        // $pickupResult = sqrt(
+        //     (pow(floatval($request->lat), 2) + 
+        //     pow(floatval($request->lon), 2))
+        // );
 
         $nearestDriverId = null;
         $nearestResult = null;
         foreach($drivers as $driver) {
-            $currentResult = sqrt(
-                (pow(floatval($driver['driver_info']['location_lat']), 2) + 
-                pow(floatval($driver['driver_info']['location_lon']), 2))
-            );
-            $result = abs($pickupResult - $currentResult);
+            // $currentResult = sqrt(
+            //     (pow(floatval($driver['driver_info']['location_lat']), 2) + 
+            //     pow(floatval($driver['driver_info']['location_lon']), 2))
+            // );
+            // $result = abs($pickupResult - $currentResult);
+
+            $latFrom = deg2rad(floatval($request->lat));
+            $lonFrom = deg2rad(floatval($request->lon));
+
+            $latTo = deg2rad(floatval($driver['driver_info']['location_lat']));
+            $lonTo = deg2rad(floatval($driver['driver_info']['location_lon']));
+
+            $earthRadius = 6371;
+
+            $latDelta = $latTo - $latFrom;
+            $lonDelta = $lonTo - $lonFrom;
+
+            $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
+                cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
+
+            $result = $angle * $earthRadius;
 
             if(is_null($nearestResult) || $result <= $nearestResult) {
                 $nearestResult = $result;
@@ -172,6 +188,6 @@ class BookingController extends Controller
         }
     }
 
-    
+
 
 }
