@@ -23,24 +23,41 @@
         .container {
             padding: 20px;
             box-sizing: border-box;
+            text-align: left; /* Align text to the left */
         }
         .result-info {
             font-size: 20px; /* Make the text larger */
             margin: 20px 0;
         }
         .result-info p {
-            margin: 10px 0;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
         }
         .result-info svg, .result-info i {
-            font-size: 24px; /* Adjust icon size */
-            margin-right: 10px; /* Space between icon and text */
+            font-size: 28px; /* Adjust icon size */
+            margin-right: 15px; /* Space between icon and text */
         }
-        button {
+        .result-info .pickup-icon {
+            font-size: 36px; /* Larger size for pickup icon */
+        }
+        .result-info input[type="text"] {
+            font-size: 16px; /* Adjust input text size */
+        }
+        .reservation-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             cursor: pointer;
-            padding: 10px;
-            font-size: 16px;
-            width: 100%; /* Adjust the width to fit the form */
-            box-sizing: border-box;
+            margin-top: 20px;
+        }
+        .reservation-button i {
+            font-size: 36px;
+            color: #ff0000; /* Red color for the icon */
+        }
+        .reservation-button span {
+            font-size: 20px; /* Increase text size */
+            color: #000000; /* Red color for the text */
         }
         .back-button {
             position: fixed;
@@ -55,58 +72,34 @@
 </head>
 <body>
     <div id="map"></div>
-    <form action="{{ route('bookings.store') }}" method="POST">
+    <form action="{{ route('bookings.store') }}" method="POST" class="container" id="bookingForm">
         @csrf
-        <input type="text" id="lat" name="lat" hidden>
-        <input type="text" id="lon" name="lon" hidden>
-        <div>
-            <label for="">乗車地:</label>
-            <input type="text" name="pickup_location" value="{{ $pickup }}" hidden>
-            <input type="text" value="{{ $pickup }}" disabled>
-        </div>
-
-        <div>
-            <label for="">目的地:</label>
-            <input type="text" name="dropoff_location" value="{{ $destination }}" hidden>
-            <input type="text" value="{{ $destination }}" disabled>
-        </div>
-
-        <div>
-            <label for="">推定時間:</label>
-            <input type="text" name="taketime" value="{{ $duration }}" id="duration2" hidden>
-            <input type="text" value="{{ $duration }}" id="duration" disabled>
-        </div>
-
-        <div>
-            <label for="">価格:</label>
-            <input type="text" name="fare" value="{{ $totalFare }}" id="fare2" hidden>
-            <input type="text" value="{{ $totalFare }}" id="fare" disabled>
-        </div>
-        
-        {{-- <p><strong>乗車地:</strong> {{ $pickup }}</p> --}}
-        {{-- <p><strong>目的地:</strong> {{ $destination }}</p> --}}
-        {{-- <p><strong>推定時間:</strong> <span id="duration">{{ $duration }}</span></p>
-        <p><strong>価格:</strong> ¥<span id="fare">{{ $totalFare }}</span></p> --}}
-
-        <button type="submit">予約</button>
-    </form>
-    {{-- <div class="container">
+        <input type="hidden" id="lat" name="lat">
+        <input type="hidden" id="lon" name="lon">
         <div class="result-info">
-            <p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-raised-hand" viewBox="0 0 16 16">
-                    <path d="M6 6.207v9.043a.75.75 0 0 0 1.5 0V10.5a.5.5 0 0 1 1 0v4.75a.75.75 0 0 0 1.5 0v-8.5a.25.25 0 1 1 .5 0v2.5a.75.75 0 0 0 1.5 0V6.5a3 3 0 0 0-3-3H6.236a1 1 0 0 1-.447-.106l-.33-.165A.83.83 0 0 1 5 2.488V.75a.75.75 0 0 0-1.5 0v2.083c0 .715.404 1.37 1.044 1.689L5.5 5c.32.32.5.754.5 1.207"/>
-                    <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-                </svg>
-                <strong>乗車地:</strong> {{ $pickup }}
-            </p>
-            <p><i class="bi bi-geo-alt"></i> <strong>目的地:</strong> {{ $destination }}</p>
-            <p><i class="bi bi-clock"></i> <strong>推定時間:</strong> <span id="duration">{{ $duration }}</span></p>
-            <p><i class="bi bi-currency-yen"></i> <strong>推定料金:</strong> ¥<span id="fare">{{ $totalFare }}</span></p>
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-raised-hand" viewBox="0 0 16 16">
+                <path d="M6 6.207v9.043a.75.75 0 0 0 1.5 0V10.5a.5.5 0 0 1 1 0v4.75a.75.75 0 0 0 1.5 0v-8.5a.25.25 0 1 1 .5 0v2.5a.75.75 0 0 0 1.5 0V6.5a3 3 0 0 0-3-3H6.236a1 1 0 0 1-.447-.106l-.33-.165A.83.83 0 0 1 5 2.488V.75a.75.75 0 0 0-1.5 0v2.083c0 .715.404 1.37 1.044 1.689L5.5 5c.32.32.5.754.5 1.207"/>
+                <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+            </svg>乗車地 :  <input type="text" name="pickup_location" value="{{ $pickup }}" hidden><input type="text" value="{{ $pickup }}" disabled></p>
         </div>
 
-        <button type="button" class="btn btn-primary"><i class="bi bi-check-circle-fill"></i> 予約</button>
-        <a href="{{ route ('picks.refuse') }}">予約</a>
-    </div> --}}
+        <div class="result-info">
+            <p><i class="bi bi-geo-alt"></i>目的地 : <input type="text" name="dropoff_location" value="{{ $destination }}" hidden><input type="text" value="{{ $destination }}" disabled></p>
+        </div>
+
+        <div class="result-info">
+            <p><i class="bi bi-clock"></i>所要時間 : <input type="text" name="taketime" value="{{ $duration }}" id="duration2" hidden><input type="text" value="{{ $duration }}" id="duration" disabled></p>
+        </div>
+
+        <div class="result-info">
+            <p><i class="bi bi-currency-yen"></i>料金 : <input type="text" name="fare" value="{{ $totalFare }}" id="fare2" hidden><input type="text" value="{{ $totalFare }}" id="fare" disabled></p>
+        </div>
+
+        <div class="reservation-button" onclick="submitForm()">
+            <i class="bi bi-check-circle-fill"></i>
+            <span>予約</span>
+        </div>
+    </form>
 
     <div class="back-button" onclick="goBack()">
         &lt;
@@ -140,8 +133,8 @@
                             }
                             var destinationLatLng = [data[0].lat, data[0].lon];
 
-                            const lat = document.getElementById('lat').value = data[0].lat
-                            const lon = document.getElementById('lon').value = data[0].lon
+                            const lat = document.getElementById('lat').value = data[0].lat;
+                            const lon = document.getElementById('lon').value = data[0].lon;
 
                             var routingControl = L.Routing.control({
                                 waypoints: [
@@ -185,7 +178,11 @@
         function goBack() {
             window.location.href = "{{ route('picks.search') }}";
         }
+
+        function submitForm() {
+            console.log('Form submitted');
+            document.getElementById('bookingForm').submit();
+        }
     </script>
 </body>
 </html>
-
