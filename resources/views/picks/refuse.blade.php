@@ -19,40 +19,6 @@
             height: 400px;
             margin: 0 -20px 20px -20px; /* Remove margin on left and right */
         }
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: 400px;
-            margin: auto;
-        }
-        .input-group {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            width: 100%;
-        }
-        .input-group .arrow-icon {
-            font-size: 48px; /* Make the arrow longer */
-            color: #000000;
-        }
-        .form-control {
-            margin-bottom: 10px;
-            padding: 10px;
-            font-size: 16px;
-            width: calc(100% - 20px); /* Adjust the width to fit the form */
-            background-color: #e6e6fa; /* Light purple background */
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            cursor: pointer;
-            padding: 10px;
-            font-size: 16px;
-            margin-top: 20px;
-            width: calc(100% - 20px); /* Adjust the width to fit the form */
-        }
         .driver-info1 {
             display: flex;
             margin-top: 30px;
@@ -61,49 +27,30 @@
         .driver-info2 {
             margin-left: 50px;
         }
-
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            box-sizing: border-box;
-        }
-        #map {
-            width: 100%;
-            height: 50vh; /* Adjust the height as needed */
-            margin: 0;
-        }
-        .container {
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .result-info {
-            font-size: 20px; /* Make the text larger */
-            margin: 20px 0;
-        }
-        .result-info p {
-            margin: 10px 0;
-        }
-        .result-info svg, .result-info i {
-            font-size: 24px; /* Adjust icon size */
-            margin-right: 10px; /* Space between icon and text */
-        }
-        button {
+        .icon-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             cursor: pointer;
-            padding: 10px;
-            font-size: 16px;
-            width: 100%; /* Adjust the width to fit the form */
-            box-sizing: border-box;
+            text-decoration: none;
         }
-        .back-button {
-            position: fixed;
-            bottom: 30px; /* Adjusted for higher position */
-            left: 30px; /* Adjusted for more right position */
-            font-size: 30px;
-            color: #000;
-            cursor: pointer;
-            font-weight: bold; /* To ensure the < mark is bold */
+        .icon-button i {
+            font-size: 48px; /* Adjust icon size */
+            margin-bottom: 5px; /* Space between icon and text */
+        }
+        .icon-button span {
+            color: black; /* Set text color to black */
+        }
+        .cancel-icon {
+            color: red;
+        }
+        .ride-icon {
+            color: blue;
+        }
+        .response-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -120,56 +67,28 @@
                 <img src="{{ asset('storage/' . $users->driver_image) }}" alt="Driver Photo" style="width: 90px; height: 90px; border-radius: 50%; margin-top: 10px">
             </div>
 
-        <div class="driver-info2">
-            <div class="license-plate">
-                <p>登録済み車両番号 <br>{{ $users->license_plate ?? 'Not available' }}</p>
-            </div>
+            <div class="driver-info2">
+                <div class="license-plate">
+                    <p>登録済み車両番号 <br>{{ $users->license_plate ?? 'Not available' }}</p>
+                </div>
 
-            <div class="rating">
-                <p>平均評価 <br>{{ $averageRating ?? 'Not available' }}</p>
+                <div class="rating">
+                    <p>平均評価 <br>{{ $averageRating ?? 'Not available' }}</p>
+                </div>
             </div>
         </div>
-        </div>
-
-        {{-- <button type="submit" class="btn btn-primary">
-            <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
-            キャンセル
-        </button> --}}
     </form>
 
     <div class="response-buttons">
-        <a href="{{ route('picks.search') }}" class="yes">キャンセル</a>
-        <a href="{{ route('picks.driving') }}" class="no">乗車</a>
+        <a href="{{ route('picks.search') }}" class="icon-button cancel-icon">
+            <i class="bi bi-x-circle-fill"></i>
+            <span>キャンセル</span>
+        </a>
+        <a href="{{ route('picks.driving') }}" class="icon-button ride-icon">
+            <i class="bi bi-person-bounding-box"></i>
+            <span>乗車</span>
+        </a>
     </div>
-
-    {{-- <form action="{{ route('picks.store') }}" method="POST">
-        @csrf
-        <div class="mb-3" style="width: 100%;">
-            <label for="pickup">
-                <i class="bi bi-geo-alt-fill bi-2x"></i> <!-- Larger icon -->
-            </label>
-            <input type="text" id="pickup" name="pickup" class="form-control" placeholder="乗車地を入力" required>
-        </div>
-        
-        <div class="input-group">
-            <span class="arrow-icon">
-                <i class="bi bi-arrow-down bi-3x"></i> <!-- Larger icon -->
-            </span>
-        </div>
-        
-        <div class="mb-3" style="width: 100%;">
-            <label for="destination">
-                <i class="bi bi-geo-fill bi-2x"></i> <!-- Larger icon -->
-            </label>
-            <input type="text" id="destination" name="destination" class="form-control" placeholder="目的地を入力" required>
-        </div>
-        
-        <button type="submit" class="btn btn-primary">
-            <i class="bi bi-check-circle-fill bi-2x"></i> <!-- Larger icon -->
-            選択
-        </button>
-    </form> --}}
-    
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
@@ -220,11 +139,6 @@
 
                                 var totalFare = baseFare + (additionalDistance * additionalFarePerKm);
                                 var formattedFare = Math.ceil(totalFare);
-
-                                // document.getElementById('duration').value = Math.ceil(duration) + ' 分';
-                                // document.getElementById('fare').value = formattedFare;
-                                // document.getElementById('duration2').value = Math.ceil(duration) + ' 分';
-                                // document.getElementById('fare2').value = formattedFare;
                             });
                         });
                 })

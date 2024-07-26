@@ -29,12 +29,12 @@
         }
 
         .bike-illustration {
-            width: 220px; /* 画像の幅を大きくする */
-            height: 190px; /* 画像の高さを大きくする */
-            background: url('/images/pickup4.png') no-repeat center center;
-            background-size: contain;
-            margin: 20px auto; /* 中央に配置 */
-        }
+    width: 221px;
+    height: 223px;
+    background: url(/images/jp.png) no-repeat center center;
+    background-size: contain;
+    margin: 4px auto;
+}
 
         .road {
             width: 110%;
@@ -49,7 +49,7 @@
             position: relative;
             background: #fff;
             border-radius: .4em;
-            margin: 20px auto;
+            margin: 5px auto;
             padding: 20px;
             width: 80%;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
