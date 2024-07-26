@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\Driverinfo;
+use App\Models\Rating;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -63,17 +64,21 @@ class PickController extends Controller
 
     public function showRefuse()
     {
-        $users = User::find(Auth::user()->id);
+
         $userLatestBooking = Booking::where('user_id', Auth::user()->id)
         ->orderBy('id', 'DESC')->first();
         $userPickupLocation = $userLatestBooking->pickup_location;
         $driverLocation = Driverinfo::where('user_id', $userLatestBooking->driver_id)
         ->pluck('driver_location')->first();
         
+        $driver_info = Driverinfo::where('user_id', $userLatestBooking->driver_id)->first();
+        // $driver_rating = Rating::where('driver_id', $userLatestBooking->driver_id)->get();
+        
         return view('picks.refuse', [
-            'users' => $users,
             'pickup' => $userPickupLocation,
             'destination' => $driverLocation,
+            'driver_info' => $driver_info,
+            // 'driver_rating' => $driver_rating
         ]);
     }
 
@@ -85,9 +90,11 @@ class PickController extends Controller
         $userPickupLocation = $userLatestBooking->pickup_location;
         $driverLocation = Driverinfo::where('user_id', $userLatestBooking->driver_id)
         ->pluck('driver_location')->first();
+
+        $driver_info = Driverinfo::where('user_id', $userLatestBooking->driver_id)->first();
         
         return view('picks.driving', [
-            'users' => $users,
+            'driver_info' => $driver_info,
             'pickup' => $userPickupLocation,
             'destination' => $driverLocation,
         ]);
