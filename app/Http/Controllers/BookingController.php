@@ -44,13 +44,12 @@ class BookingController extends Controller
         $userLatestBooking = Booking::where('driver_id', Auth::user()->id)
         ->orderBy('id', 'DESC')->first();
         $userPickupLocation = $userLatestBooking->pickup_location;
-        $driverLocation = Driverinfo::find(Auth::user()->id)
-        ->driver_location;
+        $driver = Driverinfo::where('user_id', Auth::user()->id)->first();
         
         return view('bookings.refuse', [
-            'users' => $users,
+            'driver_info' => $driver,
             'pickup' => $userPickupLocation,
-            'destination' => $driverLocation,
+            'destination' => $driver->driver_location,
         ]);
     }
 

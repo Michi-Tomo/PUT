@@ -12,6 +12,7 @@
             <td>
                 <p data-id="{{ Auth::user()->id }}" data-type="user">Saved Messages <span>You</span></p>
                 <span>Save messages secretly</span>
+                <a href="{{ route('home') }}">home</a>
             </td>
         </tr>
     </table>
