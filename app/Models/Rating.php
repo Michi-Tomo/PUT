@@ -9,7 +9,7 @@ class Rating extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['rating', 'user_id', 'is_driver' ];
+    protected $fillable = ['rating', 'user_id', 'driver_id' ];
 
 //ドライバーの評価取得
     public function driver()

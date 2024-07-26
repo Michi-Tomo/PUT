@@ -112,6 +112,9 @@
     </style>
 </head>
 <body>
+    @if(session('success'))
+        <p>{{ session('success') }}</p>
+    @endif
     <div class="container">
         <div class="bike-illustration"></div>
         <div class="road"></div>
@@ -125,6 +128,7 @@
                         <span class="star" data-value="{{ $i }}">&#9733;</span>
                     @endfor
                     <input type="hidden" name="rating" id="rating">
+
                 </form>
             </div>
         </div>
@@ -159,6 +163,8 @@
     
 
     <script>
+        
+
         document.addEventListener('DOMContentLoaded', function () {
             const stars = document.querySelectorAll('.star');
             const ratingInput = document.getElementById('rating');
@@ -180,9 +186,17 @@
             });
         });
     </script>
-
-    @if(session('success'))
-        <p>{{ session('success') }}</p>
-    @endif
+    <script>
+        if(@json(session('success'))) {
+            // alert("test")
+            setTimeout(() => {
+                window.location.replace('http://127.0.0.1:8000/home');
+            }, 800);
+        }
+    </script>
+    {{-- @if(session('success'))
+    <p>{{ session('success') }}</p>
+    @endif --}}
+    
 </body>
 </html>
