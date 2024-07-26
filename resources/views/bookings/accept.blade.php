@@ -118,18 +118,20 @@
             margin-bottom: 5px;
         }
         .btn-pickup {
-            display: block;
-            width: 100px;
-            height: auto;
-            overflow: hidden; /* Ensure image fits inside */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-decoration: none;
-            margin: 45px auto; /* Center horizontally with margin */
+            margin: 45px auto;
+            font-size: 16px;
+            color: black;
         }
-        .btn-pickup img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            display: block;
+        .btn-pickup i {
+            font-size: 48px;
+            border: 2px solid #000;
+            border-radius: 50%;
+            padding: 20px;
         }
     </style>
 </head>
@@ -137,7 +139,8 @@
     <div id="map"></div>
 
     <a href="{{ route('booking.decision') }}" class="btn-pickup">
-        <img src="{{ asset('images/go.png') }}" alt="Pick Up">
+        <i class="bi bi-taxi-front-fill"></i>
+        <span>スタート</span>
     </a>
 
     <div class="driver-info1">
