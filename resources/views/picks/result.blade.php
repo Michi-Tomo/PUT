@@ -26,7 +26,7 @@
             text-align: left; /* Align text to the left */
         }
         .result-info {
-            font-size: 20px; /* Make the text larger */
+            font-size: 16px; /* Make the text larger */
             margin: 20px 0;
         }
         .result-info p {
@@ -42,24 +42,35 @@
             font-size: 36px; /* Larger size for pickup icon */
         }
         .result-info input[type="text"] {
-            font-size: 16px; /* Adjust input text size */
+            font-size: 18px; /* Increase input text size */
         }
-        .reservation-button {
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .button {
             display: flex;
             flex-direction: column;
             align-items: center;
             cursor: pointer;
             margin-top: 20px;
+            flex: 1;
+        }
+        .button i {
+            font-size: 36px;
         }
         .reservation-button i {
-            font-size: 36px;
             color: #ff0000; /* Red color for the icon */
         }
-        .reservation-button span {
-            font-size: 20px; /* Increase text size */
-            color: #000000; /* Red color for the text */
+        .cancel-button i {
+            color: #0000ff; /* Blue color for the icon */
         }
-        .back-button {
+        .button span {
+            font-size: 20px; /* Increase text size */
+            color: #000000;
+        }
+        /* .back-button {
             position: fixed;
             bottom: 30px; /* Adjusted for higher position */
             left: 30px; /* Adjusted for more right position */
@@ -67,7 +78,7 @@
             color: #000;
             cursor: pointer;
             font-weight: bold; /* To ensure the < mark is bold */
-        }
+        } */
     </style>
 </head>
 <body>
@@ -95,15 +106,21 @@
             <p><i class="bi bi-currency-yen"></i>料金 : <input type="text" name="fare" value="{{ $totalFare }}" id="fare2" hidden><input type="text" value="{{ $totalFare }}" id="fare" disabled></p>
         </div>
 
-        <div class="reservation-button" onclick="submitForm()">
-            <i class="bi bi-check-circle-fill"></i>
-            <span>予約</span>
+        <div class="button-group">
+            <div class="button cancel-button" onclick="goBack()">
+                <i class="bi bi-x-circle-fill"></i>
+                <span>キャンセル</span>
+            </div>
+            <div class="button reservation-button" onclick="submitForm()">
+                <i class="bi bi-check-circle-fill"></i>
+                <span>予約</span>
+            </div>
         </div>
     </form>
 
-    <div class="back-button" onclick="goBack()">
+    <!-- <div class="back-button" onclick="goBack()">
         &lt;
-    </div>
+    </div> -->
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
