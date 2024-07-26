@@ -99,5 +99,10 @@ class PickController extends Controller
             'destination' => $driverLocation,
         ]);
         }
+
+        function index()
+        {
+            return view('history.index');
+        }
     }
 

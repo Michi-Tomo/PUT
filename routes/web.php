@@ -9,11 +9,14 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DriverController;
 
 use App\Http\Controllers\MatchingsController;
+use App\Http\Controllers\HistoryController;
 
 
 use App\Http\Controllers\DriverProfileController;
 
 use App\Http\Controllers\ChatController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -106,3 +109,8 @@ Route::get('/chat', [ChatController::class, 'index'])->name('chat');
 Route::middleware(['auth'])->group(function () {
     Route::get('/chat', [ChatController::class, 'index'])->name('chat');
 });
+
+Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
+
+
+
