@@ -72,14 +72,14 @@
         <p><strong>乗車地:</strong> {{ $booking->pickup_location }}</p>
         <p><strong>目的地:</strong> {{ $booking->dropoff_location }}</p>
         <p><strong>推定時間:</strong> <span id="duration">{{ $booking->taketime }}</span></p>
-        <p><strong>価格:</strong> ¥<span id="fare">{{ $booking->fare }}</span></p>
+        <p><strong>料金:</strong> ¥<span id="fare">{{ $booking->fare }}</span></p>
     </div>
 
     <div class="response-buttons-container">
         <h2>ピックアップしますか？</h2>
         <div class="response-buttons">
-            <a href="{{ route('booking.accept') }}" class="yes">はい</a>
-            <a href="{{ route('booking.refuse') }}" class="no">いいえ</a>
+            <a href="{{ route('booking.refuse') }}" class="yes">はい</a>
+            <a href="{{ route('booking.accept') }}" class="no">いいえ</a>
         </div>
     </div>
 
