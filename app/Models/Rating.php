@@ -14,6 +14,7 @@ class Rating extends Model
 //ドライバーの評価取得
     public function driver()
     {
+        
         return $this->belongsTo(Driverinfo::class);
     }
 
