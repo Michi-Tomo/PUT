@@ -67,44 +67,66 @@
             align-self: flex-start; /* Align icon to the start to match input height */
             padding-top: 4px; /* Adjust this value to fine-tune the vertical alignment */
         }
-        button {
+        .search-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             padding: 10px;
             font-size: 16px;
             margin-top: 20px;
             width: 100%; /* Adjust the width to fit the form */
             box-sizing: border-box;
+            background-color: transparent;
+            border: none;
+        }
+        .search-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ff3a3a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .search-text {
+            font-size: 16px;
+            color: #000000;
         }
 
         .menu-bar {
-    width: 100%;
-    background-color: #333;
-    color: white;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px 0;
-    position: fixed;
-    bottom: 0;
-}
+            width: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+        }
 
-.menu-item {
-    text-align: center;
-    flex: 1;
-}
+        .menu-item {
+            text-align: center;
+            flex: 1;
+        }
 
-.menu-item a {
-    color: white;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .menu-item a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.menu-item a i {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
-}
+        .menu-item a i {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
 
     </style>
 </head>
@@ -136,9 +158,11 @@
             <input type="text" id="destination" name="destination" class="form-control" placeholder="目的地を入力" required>
         </div>
         
-        <button type="submit" class="btn btn-primary">
-            <i class="bi bi-check-circle-fill"></i>
-            検索
+        <button type="submit" class="search-button">
+            <div class="search-icon">
+                <i class="bi bi-search"></i>
+            </div>
+            <div class="search-text">検索</div>
         </button>
     </form>
 
@@ -182,32 +206,32 @@
         updateMapWithCurrentLocation();
     </script>
 
-<div class="menu-bar">
-    <div class="menu-item">
-        <a href="/home">
-            <i class="bi bi-house-door-fill"></i>
-            <span>ホーム</span>
-        </a>
+    <div class="menu-bar">
+        <div class="menu-item">
+            <a href="/home">
+                <i class="bi bi-house-door-fill"></i>
+                <span>ホーム</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="/history">
+                <i class="bi bi-clock-history"></i>
+                <span>履歴</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="/chatify">
+                <i class="bi bi-chat-dots-fill"></i>
+                <span>チャット</span>
+            </a>
+        </div>
+        <div class="menu-item">
+            <a href="/mypage">
+                <i class="bi bi-person-fill"></i>
+                <span>マイページ</span>
+            </a>
+        </div>
     </div>
-    <div class="menu-item">
-        <a href="/history">
-            <i class="bi bi-clock-history"></i>
-            <span>履歴</span>
-        </a>
-    </div>
-    <div class="menu-item">
-        <a href="/chatify">
-            <i class="bi bi-chat-dots-fill"></i>
-            <span>チャット</span>
-        </a>
-    </div>
-    <div class="menu-item">
-        <a href="/mypage">
-            <i class="bi bi-person-fill"></i>
-            <span>マイページ</span>
-        </a>
-    </div>
-</div>
-{{-- <a href="javascript:history.back()">前のページに戻る</a> --}}
+
 </body>
 </html>
