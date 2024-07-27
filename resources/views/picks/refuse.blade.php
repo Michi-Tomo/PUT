@@ -101,7 +101,7 @@
         <div class="driver-info">
             <div class="driver-image">
                 <img src="{{ asset('storage/' . $driver_info->driver_image) }}" alt="Driver Photo">
-                <div class="driver-name">{{ $driver_info->driver_name ?? 'Not available' }}</div>
+                <div class="driver-name">{{ $driver->name ?? 'Not available' }}</div>
             </div>
 
             <div class="driver-details">

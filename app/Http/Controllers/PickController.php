@@ -74,12 +74,14 @@ class PickController extends Controller
         $driver_info = Driverinfo::where('user_id', $userLatestBooking->driver_id)->first();
         $driver_rating = Rating::where('driver_id', $userLatestBooking->driver_id)->get()->toArray();
         $avgRating = collect($driver_rating)->pluck('rating')->avg();
-        
+        $driver = User::find($userLatestBooking->driver_id);
+
         return view('picks.refuse', [
             'pickup' => $userPickupLocation,
             'destination' => $driverLocation,
             'driver_info' => $driver_info,
-            'driver_rating' => $avgRating
+            'driver_rating' => $avgRating,
+            'driver' => $driver
         ]);
     }
 
