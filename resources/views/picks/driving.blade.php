@@ -79,7 +79,7 @@
                 </div>
 
                 <div class="rating">
-                    <p>平均評価 <br>{{ $averageRating ?? 'Not available' }}</p>
+                    <p>平均評価 <br>{{ $driver_rating ?? 'Not available' }}</p>
                 </div>
             </div>
         </div>
