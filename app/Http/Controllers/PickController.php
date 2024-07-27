@@ -89,21 +89,44 @@ class PickController extends Controller
     {
         $userLatestBooking = Booking::where('user_id', Auth::user()->id)
         ->orderBy('id', 'DESC')->first();
-        $userPickupLocation = $userLatestBooking->pickup_location;
-        $driverLocation = Driverinfo::where('user_id', $userLatestBooking->driver_id)
-        ->pluck('driver_location')->first();
-        
         $driver_info = Driverinfo::where('user_id', $userLatestBooking->driver_id)->first();
+
         $driver_rating = Rating::where('driver_id', $userLatestBooking->driver_id)->get()->toArray();
         $avgRating = collect($driver_rating)->pluck('rating')->avg();
+
+        // dd($userLatestBooking->dropoff_location);
+
+        // $userPickupLocation = $userLatestBooking->pickup_location;
+        // $driverLocation = Driverinfo::where('user_id', $userLatestBooking->driver_id)
+        // ->pluck('driver_location')->first();
         
+        // $driver_info = Driverinfo::where('user_id', $userLatestBooking->driver_id)->first();
+        // $driver_rating = Rating::where('driver_id', $userLatestBooking->driver_id)->get()->toArray();
+        // $avgRating = collect($driver_rating)->pluck('rating')->avg();
+        
+        // return view('picks.driving', [
+        //     'pickup' => $userPickupLocation,
+        //     'destination' => $driverLocation,
+        //     'driver_info' => $driver_info,
+        //     'driver_rating' => $avgRating
+        // ]);
+        // $pickup = $request->query('pickup');
+        // $destination = $request->query('destination');
+
+        $drivers = User::where('is_driver', 1)->with('driverInfo')->get()->toArray();
+
+        // dd(['drivers' => $drivers]);
+
         return view('picks.driving', [
-            'pickup' => $userPickupLocation,
-            'destination' => $driverLocation,
+            'pickup' => $userLatestBooking->pickup_location,
+            'destination' => $userLatestBooking->dropoff_location,
             'driver_info' => $driver_info,
-            'driver_rating' => $avgRating
+            'driver_rating' => $avgRating,
+            'distance' => 0,  // Placeholder value
+            'duration' => 0,  // Placeholder value
+            'totalFare' => 0  // Placeholder value
         ]);
-        }
+    }
 
         function index()
         {

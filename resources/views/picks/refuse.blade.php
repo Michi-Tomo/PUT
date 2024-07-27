@@ -13,19 +13,19 @@
             padding: 0;
             margin: 0;
             box-sizing: border-box;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
         }
         #map {
-            width: calc(100% + 40px); /* Add 20px to each side */
+            width: 100%;
             height: 400px;
-            margin: 0 -20px 20px -20px; /* Remove margin on left and right */
+            margin: 0;
         }
         .driver-info {
             display: flex;
             align-items: center;
-            border: 1px solid #ccc;
+            border: 1px solid #b8b8b8;
             padding: 10px;
-            border-radius: 10px;
-            background-color: #f9f9f9;
+            background-color: #fcfcfc;
             margin: 20px;
             height: 120px; /* Adjust height to make it slimmer */
             margin-bottom: 60px;
@@ -55,6 +55,17 @@
         .license-plate,
         .rating {
             margin-bottom: 5px;
+        }
+        .license-plate {
+            font-size: 26px;
+            margin-top: 35px;
+            white-space: nowrap; /* Keep the text in one line */
+        }
+        .rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: 11px;
+            margin-left: -11px;
         }
         .rating i {
             color: rgb(255, 196, 3); /* Star fill color */
@@ -101,19 +112,17 @@
         <div class="driver-info">
             <div class="driver-image">
                 <img src="{{ asset('storage/' . $driver_info->driver_image) }}" alt="Driver Photo">
+
                 <div class="driver-name">{{ $driver->name ?? 'Not available' }}</div>
             </div>
 
+
             <div class="driver-details">
                 <div class="license-plate">
-                    車両番号 <br>{{ $driver_info->license_plate ?? 'Not available' }}
+                    車両番号: {{ $driver_info->license_plate ?? 'Not available' }}
                 </div>
                 <div class="rating">
-
-                    <i class="bi bi-star-fill"></i><span>{{  round($driver_rating, 1)  ?? 'Not available' }}</span>
-
-                
-
+                    <i class="bi bi-star-fill"></i><span>{{ round($driver_rating, 1) ?? 'Not available' }}</span>
                 </div>
             </div>
         </div>
