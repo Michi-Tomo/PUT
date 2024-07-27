@@ -67,9 +67,17 @@ class PickController extends Controller
 
         $userLatestBooking = Booking::where('user_id', Auth::user()->id)
         ->orderBy('id', 'DESC')->first();
+
+
         $userPickupLocation = $userLatestBooking->pickup_location;
         $driverLocation = Driverinfo::where('user_id', $userLatestBooking->driver_id)
         ->pluck('driver_location')->first();
+
+//評価がない時の表示の仕方
+        if ($userLatestBooking) {
+            $userPickupLocation = $userLatestBooking->pickup_location;
+            $driverLocation = Driverinfo::where('user_id', $userLatestBooking->driver_id)
+                ->pluck('driver_location')->first();
         
         $driver_info = Driverinfo::where('user_id', $userLatestBooking->driver_id)->first();
         $driver_rating = Rating::where('driver_id', $userLatestBooking->driver_id)->get()->toArray();
@@ -83,6 +91,9 @@ class PickController extends Controller
             'driver_rating' => $avgRating,
             'driver' => $driver
         ]);
+    } else {
+        return view('picks.refuse')->with('message', 'マッチングしたドライバーが見つかりません。');
+    }
     }
 
     public function driving()
@@ -90,6 +101,11 @@ class PickController extends Controller
         $userLatestBooking = Booking::where('user_id', Auth::user()->id)
         ->orderBy('id', 'DESC')->first();
         $driver_info = Driverinfo::where('user_id', $userLatestBooking->driver_id)->first();
+
+        if ($userLatestBooking) {
+            $userPickupLocation = $userLatestBooking->pickup_location;
+            $driverLocation = Driverinfo::where('user_id', $userLatestBooking->driver_id)
+                ->pluck('driver_location')->first();
 
         $driver_rating = Rating::where('driver_id', $userLatestBooking->driver_id)->get()->toArray();
         $avgRating = collect($driver_rating)->pluck('rating')->avg();
@@ -128,6 +144,8 @@ class PickController extends Controller
             'totalFare' => 0,  // Placeholder value
             'driver' => $driver
         ]);
+    } else {
+        return view('picks.refuse')->with('message', 'マッチングしたドライバーが見つかりません。');
     }
 
         function index()
@@ -136,3 +154,4 @@ class PickController extends Controller
         }
     }
 
+}
