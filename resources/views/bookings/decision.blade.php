@@ -16,23 +16,35 @@
             height: 400px;
             margin: 0;
         }
+        .info-container {
+            margin: 20px 10px;
+            text-align: center;
+        }
+        .info-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
         .info-section {
             border: 2px solid #ccc;
             padding: 20px;
-            margin: 20px 10px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             background-color: #f9f9f9;
-            text-align: center;
-            font-size: 24px; /* Increase font size */
-        }
-        .info-section h2 {
-            margin: 0 0 15px 0;
             font-size: 24px;
-            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 45px;
         }
         .info-section p {
             margin: 10px 0;
+        }
+        .icon-container {
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 36px;
         }
         .response-buttons-container {
             text-align: center;
@@ -45,7 +57,7 @@
         .response-buttons {
             display: flex;
             justify-content: center;
-            gap: 5px; /* Reduced gap to 5px */
+            gap: 5px;
         }
         .button {
             display: flex;
@@ -53,19 +65,19 @@
             align-items: center;
             cursor: pointer;
             text-decoration: none;
-            margin: 0 35px; /* Add small margin to balance */
+            margin: 0 35px;
         }
         .button i {
             font-size: 36px;
         }
         .yes i {
-            color: #2c4bff; /* Blue color for the icon */
+            color: #2c4bff;
         }
         .no i {
-            color: #ff0000; /* Red color for the icon */
+            color: #ff0000;
         }
         .button span {
-            font-size: 20px; /* Increase text size */
+            font-size: 20px;
             color: #000000;
         }
     </style>
@@ -74,10 +86,17 @@
 @section('content')
     <div id="map"></div>
 
-    <div class="info-section">
-        <h2>お客様リクエスト情報</h2>
-        <p>{{ $booking->pickup_location }} ➡ {{ $booking->dropoff_location }}</p>
-        <p><span id="duration">{{ $booking->taketime }}分</span>・<span id="fare">{{ $booking->fare }}円</span></p>
+    <div class="info-container">
+        {{-- <div class="info-title">お客様リクエスト情報</div> --}}
+        <div class="info-section">
+            <div class="icon-container">
+                <i class="bi bi-person-check"></i>
+            </div>
+            <div>
+                <p>{{ $booking->pickup_location }} ➡ {{ $booking->dropoff_location }}</p>
+                <p><span id="duration">{{ $booking->taketime }}分</span>・<span id="fare">{{ $booking->fare }}円</span></p>
+            </div>
+        </div>
     </div>
 
     <div class="response-buttons-container">
