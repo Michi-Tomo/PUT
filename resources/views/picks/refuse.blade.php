@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="rating">
-                    <p>平均評価 <br>{{ $driver_rating ?? 'Not available' }}</p>
+                    <p>平均評価 <br>{{ round($driver_rating, 1) ?? 'Not available' }}</p>
                 </div>
             </div>
         </div>
