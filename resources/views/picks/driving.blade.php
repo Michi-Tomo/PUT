@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>どこ行く？</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -97,6 +98,77 @@
     </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+    <script>
+        var map = L.map('map').setView([35.681167, 139.767052], 13); // 初期表示の中心位置を設定
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        function plotRoute(pickup, destination) {
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${pickup}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length === 0) {
+                        alert('乗車地が見つかりません');
+                        return;
+                    }
+                    var pickupLatLng = [data[0].lat, data[0].lon];
+
+                    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${destination}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.length === 0) {
+                                alert('目的地が見つかりません');
+                                return;
+                            }
+                            var destinationLatLng = [data[0].lat, data[0].lon];
+
+                            var routingControl = L.Routing.control({
+                                waypoints: [
+                                    L.latLng(pickupLatLng[0], pickupLatLng[1]),
+                                    L.latLng(destinationLatLng[0], destinationLatLng[1])
+                                ],
+                                routeWhileDragging: true
+                            }).addTo(map);
+
+                            routingControl.on('routesfound', function(e) {
+                                var routes = e.routes;
+                                var summary = routes[0].summary;
+
+                                var distance = summary.totalDistance / 1000;
+                                var duration = summary.totalTime / 60;
+
+                                var baseFare = 100;
+                                var additionalFarePerKm = 35;
+                                var additionalDistance = Math.max(0, distance - 0.5);
+
+                                var totalFare = baseFare + (additionalDistance * additionalFarePerKm);
+                                var formattedFare = Math.ceil(totalFare);
+                            });
+                        });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('位置情報の取得中にエラーが発生しました');
+                });
+        }
+
+        var pickup = "{{ $pickup }}";
+        var destination = "{{ $destination }}";
+        plotRoute(pickup, destination);
+
+        function goBack() {
+            window.location.href = "{{ route('picks.search') }}";
+        }
+
+        function submitForm() {
+            console.log('Form submitted');
+            document.getElementById('bookingForm').submit();
+        }
+    </script>
+    {{-- <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         var map = L.map('map');
 
@@ -134,6 +206,6 @@
         }
 
         updateMapWithCurrentLocation();
-    </script>
+    </script> --}}
 </body>
 </html>
