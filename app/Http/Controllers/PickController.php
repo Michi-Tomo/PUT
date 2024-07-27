@@ -93,6 +93,7 @@ class PickController extends Controller
 
         $driver_rating = Rating::where('driver_id', $userLatestBooking->driver_id)->get()->toArray();
         $avgRating = collect($driver_rating)->pluck('rating')->avg();
+        $driver = User::find($userLatestBooking->driver_id);
 
         // dd($userLatestBooking->dropoff_location);
 
@@ -124,7 +125,8 @@ class PickController extends Controller
             'driver_rating' => $avgRating,
             'distance' => 0,  // Placeholder value
             'duration' => 0,  // Placeholder value
-            'totalFare' => 0  // Placeholder value
+            'totalFare' => 0,  // Placeholder value
+            'driver' => $driver
         ]);
     }
 
