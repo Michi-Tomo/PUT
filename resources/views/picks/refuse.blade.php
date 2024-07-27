@@ -10,7 +10,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            padding: 20px;
+            padding: 0;
             margin: 0;
             box-sizing: border-box;
         }
@@ -19,13 +19,51 @@
             height: 400px;
             margin: 0 -20px 20px -20px; /* Remove margin on left and right */
         }
-        .driver-info1 {
+        .driver-info {
             display: flex;
-            margin-top: 30px;
-            margin-left: 10px;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            margin: 20px;
+            height: 120px; /* Adjust height to make it slimmer */
+            margin-bottom: 60px;
+            margin-top: 40px;
         }
-        .driver-info2 {
-            margin-left: 50px;
+        .driver-image {
+            margin-right: 20px;
+        }
+        .driver-image img {
+            width: 70px; /* Adjusted image size */
+            height: 70px; /* Adjusted image size */
+            border-radius: 50%;
+            margin-left: 25px;
+        }
+        .driver-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 5px;
+            margin-left: 12px;
+        }
+        .driver-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .license-plate,
+        .rating {
+            margin-bottom: 5px;
+        }
+        .rating i {
+            color: rgb(255, 196, 3); /* Star fill color */
+            -webkit-text-stroke: 1px black; /* Star border color */
+        }
+        .rating span {
+            font-size: 16px;
+            font-weight: bold;
+            margin-left: 5px;
         }
         .icon-button {
             display: flex;
@@ -55,25 +93,27 @@
     </style>
 </head>
 <body>
-    <h1></h1>
-
     <div id="map"></div>
 
     <form action="">
         @csrf
 
-        <div class="driver-info1">
+        <div class="driver-info">
             <div class="driver-image">
-                <img src="{{ asset('storage/' . $driver_info->driver_image) }}" alt="Driver Photo" style="width: 90px; height: 90px; border-radius: 50%; margin-top: 10px">
+                <img src="{{ asset('storage/' . $driver_info->driver_image) }}" alt="Driver Photo">
+                <div class="driver-name">{{ $driver_info->driver_name ?? 'Not available' }}</div>
             </div>
 
-            <div class="driver-info2">
+            <div class="driver-details">
                 <div class="license-plate">
-                    <p>登録済み車両番号 <br>{{ $driver_info->license_plate ?? 'Not available' }}</p>
+                    車両番号 <br>{{ $driver_info->license_plate ?? 'Not available' }}
                 </div>
-
                 <div class="rating">
-                    <p>平均評価 <br>{{ round($driver_rating, 1) ?? 'Not available' }}</p>
+
+                    <i class="bi bi-star-fill"></i><span>{{  round($driver_rating, 1)  ?? 'Not available' }}</span>
+
+                
+
                 </div>
             </div>
         </div>
