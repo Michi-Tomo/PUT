@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>どこ行く？</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -98,43 +100,77 @@
     </div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script>
-        var map = L.map('map');
+        document.addEventListener("DOMContentLoaded", function() {
+            var map = L.map('map').setView([35.681167, 139.767052], 13); // Set initial view to a central location
 
-        // Default center to Tokyo
-        map.setView([35.681167, 139.767052], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
+            function plotRoute(pickup, destination) {
+                // Use Nominatim API to get coordinates for the pickup location
+                fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${pickup}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.length === 0) {
+                            alert('Pickup location not found');
+                            return;
+                        }
+                        var pickupLatLng = [data[0].lat, data[0].lon];
 
-        function updateMapWithCurrentLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    var lat = position.coords.latitude;
-                    var lon = position.coords.longitude;
+                        // Use Nominatim API to get coordinates for the destination location
+                        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${destination}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.length === 0) {
+                                    alert('Destination not found');
+                                    return;
+                                }
+                                var destinationLatLng = [data[0].lat, data[0].lon];
 
-                    // Center map on current location
-                    map.setView([lat, lon], 13);
+                                // Create routing control
+                                var routingControl = L.Routing.control({
+                                    waypoints: [
+                                        L.latLng(pickupLatLng[0], pickupLatLng[1]),
+                                        L.latLng(destinationLatLng[0], destinationLatLng[1])
+                                    ],
+                                    routeWhileDragging: true
+                                }).addTo(map);
 
-                    // Add marker for current location
-                    L.marker([lat, lon]).addTo(map)
-                        .bindPopup('現在地')
-                        .openPopup();
-                }, function(error) {
-                    console.error('Error getting location:', error);
-                    alert('Unable to retrieve your location. Error code: ' + error.code);
-                }, {
-                    enableHighAccuracy: true, // Request high accuracy
-                    timeout: 5000, // Set timeout to 5 seconds
-                    maximumAge: 0 // Do not use cached location
-                });
-            } else {
-                alert('Geolocation is not supported by this browser.');
+                                routingControl.on('routesfound', function(e) {
+                                    var routes = e.routes;
+                                    var summary = routes[0].summary;
+
+                                    // Calculate distance in kilometers
+                                    var distance = summary.totalDistance / 1000;
+
+                                    // Calculate duration in minutes
+                                    var duration = summary.totalTime / 60;
+
+                                    // Minimum fare of 100 yen
+                                    var baseFare = 100;
+
+                                    // Additional fare beyond 500 meters (0.5 km)
+                                    var additionalFarePerKm = 35;
+                                    var additionalDistance = Math.max(0, distance - 0.5); // Exclude the first 500 meters
+
+                                    // Calculate total fare
+                                    var totalFare = baseFare + (additionalDistance * additionalFarePerKm);
+
+                                    // Format the fare for display
+                                    var formattedFare = Math.ceil(totalFare);
+                                });
+                            });
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('An error occurred while fetching the location data');
+                    });
             }
-        }
-
-        updateMapWithCurrentLocation();
+            plotRoute(@json($booking->pickup_location), @json($booking->dropoff_location));
+        });
     </script>
 </body>
 </html>
