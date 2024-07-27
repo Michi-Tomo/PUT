@@ -123,23 +123,33 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            margin: 45px auto;
+            margin: 40px auto;
             font-size: 16px;
             color: black;
         }
         .btn-pickup i {
-            font-size: 48px;
-            border: 2px solid #000;
+            /* font-size: 48px; */
+            /* border: 2px solid #000; */
+            font-size: 80px;
             border-radius: 50%;
-            padding: 20px;
+            /* padding: 20px; */
+            color: #008000;
+
         }
+        .btn-pickup i:hover{
+            color: #ed0b0b;
+        }
+
     </style>
 </head>
 <body>
     <div id="map"></div>
 
     <a href="{{ route('booking.decision') }}" class="btn-pickup">
-        <i class="bi bi-taxi-front-fill"></i>
+        {{-- <i class="bi bi-taxi-front-fill"></i> --}}
+        {{-- <i class="bi bi-geo"></i> --}}
+        <i class="bi bi-geo-fill"></i>
+
         <span>スタート</span>
     </a>
 
