@@ -12,33 +12,29 @@
             font-family: Arial, sans-serif;
         }
         #map {
-            width: 100%;
+            width: calc(96% + 40px); /* Add 20px to each side */
             height: 400px;
-            margin: 0;
+            margin: -20px -20px 45px -20px; /* Remove margin on left and right */
         }
         .info-container {
             margin: 20px 10px;
             text-align: center;
         }
-        .info-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
         .info-section {
             border: 2px solid #ccc;
-            padding: 20px;
+            padding: 10px; /* Reduce padding */
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             background-color: #f9f9f9;
-            font-size: 24px;
+            font-size: 16px; /* Reduce font size */
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 45px;
+            margin-bottom: 46px; /* Reduce margin-bottom */
         }
         .info-section p {
-            margin: 10px 0;
+            margin: 5px 0; /* Reduce margin */
+            font-size: 23px;
         }
         .icon-container {
             margin-right: 15px;

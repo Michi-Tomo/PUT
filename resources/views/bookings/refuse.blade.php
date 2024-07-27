@@ -17,15 +17,33 @@
         #map {
             width: calc(100% + 40px); /* Add 20px to each side */
             height: 400px;
-            margin: 0 -20px 20px -20px; /* Remove margin on left and right */
+            margin: -41px -20px 45px -20px; /* Remove margin on left and right */
         }
-        .driver-info1 {
+        .info-container {
+            margin: 20px 10px;
+            text-align: center;
+        }
+        .info-section {
+            border: 2px solid #ccc;
+            padding: 10px; /* Reduce padding */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            font-size: 16px; /* Reduce font size */
             display: flex;
-            margin-top: 30px;
-            margin-left: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 46px; /* Reduce margin-bottom */
         }
-        .driver-info2 {
-            margin-left: 50px;
+        .info-section p {
+            margin: 5px 0; /* Reduce margin */
+            font-size: 23px;
+        }
+        .icon-container {
+            margin-right: 10px; /* Reduce margin-right */
+            display: flex;
+            align-items: center;
+            font-size: 48px; /* Increase icon size */
         }
         .icon-button {
             display: flex;
@@ -59,25 +77,17 @@
 
     <div id="map"></div>
 
-    <form action="">
-        @csrf
-
-        <div class="driver-info1">
-            <div class="driver-image">
-                <img src="{{ asset('storage/' . $driver_info->driver_image) }}" alt="Driver Photo" style="width: 90px; height: 90px; border-radius: 50%; margin-top: 10px">
+    <div class="info-container">
+        <div class="info-section">
+            <div class="icon-container">
+                <i class="bi bi-person-check"></i>
             </div>
-
-            <div class="driver-info2">
-                <div class="license-plate">
-                    <p>登録済み車両番号 <br>{{ $driver_info->license_plate ?? 'Not available' }}</p>
-                </div>
-
-                <div class="rating">
-                    <p>平均評価 <br>{{ $averageRating ?? 'Not available' }}</p>
-                </div>
+            <div>
+                <p>{{ $booking->pickup_location }} ➡ {{ $booking->dropoff_location }}</p>
+                <p><span id="duration">{{ $booking->taketime }}</span>・<span id="fare">{{ $booking->fare }}円</span></p>
             </div>
         </div>
-    </form>
+    </div>
 
     <div class="response-buttons">
         <a href="{{ route('booking.accept') }}" class="icon-button cancel-icon">
@@ -158,5 +168,6 @@
     </script>
 </body>
 </html>
+
 
        

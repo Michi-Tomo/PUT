@@ -46,10 +46,17 @@ class BookingController extends Controller
         $userPickupLocation = $userLatestBooking->pickup_location;
         $driver = Driverinfo::where('user_id', Auth::user()->id)->first();
         
+        $booking = Booking::where('driver_id', Auth::user()->id)
+        ->whereNull('is_accepted')
+        ->orderBy('id', 'DESC')
+        ->first();
+
         return view('bookings.refuse', [
             'driver_info' => $driver,
             'pickup' => $userPickupLocation,
             'destination' => $driver->driver_location,
+            'booking' => $booking
+            
         ]);
     }
 
@@ -189,11 +196,13 @@ class BookingController extends Controller
         ->whereNull('is_accepted')
         ->orderBy('id', 'DESC')
         ->first();
+        
         $users = Driverinfo::where('user_id', Auth::user()->id)->first();
         // return redirect()->route('bookings.decision', ['booking' => $booking]);
         return view('bookings.drop', [
             'booking' => $booking,
-            'users' => $users
+            'users' => $users,
+            'booking' => $booking
         ]);
     }
 
