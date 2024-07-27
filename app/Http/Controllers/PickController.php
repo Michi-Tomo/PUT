@@ -85,19 +85,21 @@ class PickController extends Controller
 
     public function driving()
     {
-        $users = User::find(Auth::user()->id);
         $userLatestBooking = Booking::where('user_id', Auth::user()->id)
         ->orderBy('id', 'DESC')->first();
         $userPickupLocation = $userLatestBooking->pickup_location;
         $driverLocation = Driverinfo::where('user_id', $userLatestBooking->driver_id)
         ->pluck('driver_location')->first();
-
+        
         $driver_info = Driverinfo::where('user_id', $userLatestBooking->driver_id)->first();
+        $driver_rating = Rating::where('driver_id', $userLatestBooking->driver_id)->get()->toArray();
+        $avgRating = collect($driver_rating)->pluck('rating')->avg();
         
         return view('picks.driving', [
-            'driver_info' => $driver_info,
             'pickup' => $userPickupLocation,
             'destination' => $driverLocation,
+            'driver_info' => $driver_info,
+            'driver_rating' => $avgRating
         ]);
         }
 
