@@ -173,18 +173,28 @@ class BookingController extends Controller
 
     public function drop()
     {
-        $user = Auth::user();
+        // $user = Auth::user();
 
-        $user_type = Auth::user()->is_driver;
+        // $user_type = Auth::user()->is_driver;
         
-        if($user_type == 0) {
-            //ユーザーページに飛ぶ
-            return view('picks.search');
-        } else if($user_type == 1) {
-            //ドライバーぺージに飛ぶ！
-            $users = Driverinfo::where('user_id', $user->id)->first();
-            return view('bookings.drop', compact('users'));
-        }
+        // if($user_type == 0) {
+        //     //ユーザーページに飛ぶ
+        //     return view('picks.search');
+        // } else if($user_type == 1) {
+        //     //ドライバーぺージに飛ぶ！
+        //     $users = Driverinfo::where('user_id', $user->id)->first();
+        //     return view('bookings.drop', compact('users'));
+        // }
+        $booking = Booking::where('driver_id', Auth::user()->id)
+        ->whereNull('is_accepted')
+        ->orderBy('id', 'DESC')
+        ->first();
+        $users = Driverinfo::where('user_id', Auth::user()->id)->first();
+        // return redirect()->route('bookings.decision', ['booking' => $booking]);
+        return view('bookings.drop', [
+            'booking' => $booking,
+            'users' => $users
+        ]);
     }
 
 

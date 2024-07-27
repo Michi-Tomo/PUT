@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Driverinfo;
+use App\Models\Booking;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -16,7 +18,12 @@ class DriverProfileController extends Controller
         $user = Auth::user();
         $driverInfo = $user->driverInfo;
 
-        return view('driverprofile.index', compact('driverInfo'));
+        $driverRatings = Rating::where('driver_id', Auth::user()->id)->get();
+        $avgRating = collect($driverRatings)->pluck('rating')->avg();
+
+        return view('driverprofile.index', ['driverInfo' => $driverInfo, 'avgRating'=>$avgRating]);
+
+
     }
 
     // Show the edit profile page

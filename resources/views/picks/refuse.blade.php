@@ -109,7 +109,11 @@
                     車両番号 <br>{{ $driver_info->license_plate ?? 'Not available' }}
                 </div>
                 <div class="rating">
-                    <i class="bi bi-star-fill"></i><span>{{ $driver_rating ?? 'Not available' }}</span>
+
+                    <i class="bi bi-star-fill"></i><span>{{  round($driver_rating, 1)  ?? 'Not available' }}</span>
+
+                
+
                 </div>
             </div>
         </div>
