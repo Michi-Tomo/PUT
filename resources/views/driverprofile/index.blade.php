@@ -123,7 +123,7 @@
             <p>電話番号: {{ Auth::user()->phone }}</p>
             <p>免許証番号：{{ $driverInfo->driver_license }}</p>
             <p>車両番号：{{ $driverInfo->license_plate }}</p>
-            <p>平均評価：{{ round($avgRating, 1) ?? 'Not available' }}</p>
+            <p>平均評価：{{ round($avgRating, 1) != 0 ? round($avgRating, 1) : '未評価' }}</p>
             
             <div class="icon-buttons">
                 <a href="{{ route('driverprofile.edit') }}" class="edit-button" title="編集">
