@@ -162,7 +162,7 @@
             </a>
         </div>
         <div class="menu-item">
-            <a href="/driverprofile">
+            <a href="/mypage">
                 <i class="bi bi-person-fill"></i>
                 <span>マイページ</span>
             </a>
@@ -170,3 +170,12 @@
     </div>
 </body>
 </html>
+
+
+<div class="menu-item">
+    <a href="/drivermyprofile">
+        <i class="bi bi-person-fill"></i>
+        <span>マイページ</span>
+    </a>
+</div>
+</div>
