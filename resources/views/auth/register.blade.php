@@ -127,9 +127,28 @@
                 </div>
             </div>
 
-            <div class="row mb-0 justify-content-center">
+            {{-- <div class="row mb-0 flex justify-content-center">
+                <div class="col-md-6 text-center">
+                    <a href="javascript:history.back()" class="btn btn-pink btn-lg btn-block">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                          </svg>
+                    </a>
+                </div>
                 <div class="col-md-6 text-center">
                     <button type="submit" class="btn btn-pink btn-lg btn-block">
+                        <i class="bi bi-pencil-square"></i> {{ __('新規登録する') }}
+                    </button>
+                </div>
+            </div> --}}
+            <div class="row mb-0 justify-content-center">
+                <div class="col-md-12 d-flex justify-content-center align-items-center gap-3">
+                    <a href="javascript:history.back()" class="btn btn-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                        </svg>
+                    </a>
+                    <button type="submit" class="btn btn-pink btn-lg">
                         <i class="bi bi-pencil-square"></i> {{ __('新規登録する') }}
                     </button>
                 </div>
@@ -137,7 +156,7 @@
         </form>
     </div>
 </div>
-<a href="javascript:history.back()">前のページに戻る</a>
+
 
 <script>
     function handleClick(value) {
@@ -158,6 +177,7 @@
         color: #ffffff;
         font-size: 1.2rem;
         padding: 0.75rem 1.5rem;
+        margin-right: 92px;
     }
     .btn-pink:hover {
         background-color: #141414;
