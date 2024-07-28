@@ -136,10 +136,10 @@
     <h1>履歴一覧</h1>
     <ul>
         @foreach ($histories as $history)
-            <li>{{ $history->pickup_location }}</li>
-            <li>{{ $history->dropoff_location }}</li>
-            <li>{{ $history->taketime }}</li>
-            <li>{{ $history->fare }}</li> 
+            <li>{{ $history['pickup_location'] }}</li>
+            <li>{{ $history['dropoff_location'] }}</li>
+            <li>{{ $history['taketime'] }}</li>
+            <li>{{ $history['fare'] }}</li>
         @endforeach
     </ul>
     <div class="menu-bar">
