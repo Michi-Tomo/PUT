@@ -159,7 +159,7 @@
             </a>
         </div>
         <div class="menu-item">
-            <a href="/drivermyprofile">
+            <a href="/driverprofile">
                 <i class="bi bi-person-fill"></i>
                 <span>マイページ</span>
             </a>
