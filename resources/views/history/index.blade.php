@@ -128,6 +128,31 @@
             object-fit: cover;
             margin-top: 94px;
         }
+        .info-container {
+            margin: 20px 10px;
+            text-align: center;
+        }
+        .info-section {
+            border: 2px solid #ccc;
+            padding: 10px; /* Reduce padding */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            font-size: 16px; /* Reduce font size */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .info-section p {
+            margin: 2px 0; /* Reduce margin */
+            font-size: 23px;
+        }
+        .icon-container {
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 36px;
+        }
     </style>
     </style>
 </head>
@@ -135,12 +160,29 @@
     <img src="/images/letter.jpg" alt="" style="width:100%; height:auto;">
     <h1>履歴一覧</h1>
     <ul>
-        @foreach ($histories as $history)
+        {{-- @foreach ($histories as $history)
             <li>{{ $history['pickup_location'] }}</li>
             <li>{{ $history['dropoff_location'] }}</li>
             <li>{{ $history['taketime'] }}</li>
             <li>{{ $history['fare'] }}</li>
+        @endforeach --}}
+
+        @foreach ($histories as $history)
+        <div class="info-container">
+            {{-- <div class="info-title">お客様リクエスト情報</div> --}}
+            <div class="info-section">
+                <div class="icon-container">
+                    <i class="bi bi-person-check"></i>
+                </div>
+                <div>
+                    <p>{{ $history['pickup_location']  }} ➡ {{ $history['dropoff_location'] }}</p>
+                    <p><span id="duration">{{ $history['taketime'] }}</span>・<span id="fare">{{ $history['fare']  }}円</span></p>
+                </div>
+            </div>
+        </div>
         @endforeach
+
+
     </ul>
     <div class="menu-bar">
         <div class="menu-item">
