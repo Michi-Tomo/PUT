@@ -92,7 +92,7 @@
             </div>
             <div>
                 <p>{{ $booking->pickup_location }} ➡ {{ $booking->dropoff_location }}</p>
-                <p><span id="duration">{{ $booking->taketime }}</span>・<span id="fare">{{ $booking->fare }}円</span></p>
+                <p><span id="duration">{{ $booking->taketime }}</span>・<span id="fare">{{ $booking->fare }}</span></p>
             </div>
         </div>
     </div>
