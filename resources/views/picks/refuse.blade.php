@@ -44,7 +44,7 @@
             font-size: 16px;
             font-weight: bold;
             margin-top: 5px;
-            margin-left: 12px;
+            margin-left: 26px;
         }
         .driver-details {
             display: flex;
